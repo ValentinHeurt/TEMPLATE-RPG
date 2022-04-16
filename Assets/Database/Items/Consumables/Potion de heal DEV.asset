@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227ec11b53adcff4a88ba698d26d7207, type: 3}
+  m_Name: Potion de heal DEV
+  m_EditorClassIdentifier: 
+  ID: potionHealDev
+  itemType: Consumable
+  rarity: {fileID: 11400000, guid: a6523e44dd751a54b8bef9db36af6365, type: 2}
+  description: Potion de heal dev
+  itemName: Potion de heal
+  maxStack: 16
+  icon: {fileID: 21300000, guid: d6b666ad9e2653841b52133e3f83ddd2, type: 3}
+  bonuses:
+  - {fileID: 11400000, guid: ecebbe8c66ecf6c4391b00f7f4c7bba9, type: 2}
+  onConsumableUsed: {fileID: 11400000, guid: 8456cc487ff576448a35b88963aa3015, type: 2}
