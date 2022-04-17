@@ -33,7 +33,7 @@ public class HealthBar : MonoBehaviour
         if (backHealthBarfill >= frontHealthBarfill)
         {
             backHealthBar.color = Color.red;
-            lerpTimer = Time.deltaTime;
+            lerpTimer = Time.deltaTime * 5f;
             backHealthBar.fillAmount = Mathf.Lerp(backHealthBarfill, hFraction, lerpTimer);
         }
     }

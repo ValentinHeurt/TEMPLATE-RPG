@@ -41,9 +41,16 @@ public class DialogueManager : Singleton<DialogueManager>
 
     void CreateDialogue()
     {
-        dialogueText.text = dialogueLines[dialogueIndex];
-        nameText.text = npcName;
-        dialoguePanel.SetActive(true);
+        if (dialogueLines.Count == 0)
+        {
+            Debug.LogError($"Erreur de paramétrage, le pnj {npcName} n'a pas de ligne de dialogue.");
+        }
+        else
+        {
+            dialogueText.text = dialogueLines[dialogueIndex];
+            nameText.text = npcName;
+            dialoguePanel.SetActive(true);
+        }
     }
 
     public void ContinueDialogue()

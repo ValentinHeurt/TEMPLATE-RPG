@@ -20,7 +20,17 @@ public class Weapon : Equipment
 
     public override void UseItem(ItemSlotUI itemSlotUI)
     {
-
+        if ((itemSlotUI as InventorySlot) != null)
+        {
+            Debug.Log("equipment equiped");
+            onEquiped?.Invoke(new ItemSlot(itemSlotUI.SlotItem, 1), equipmentPart, itemSlotUI.SlotIndex);
+            onEquipmentEquiped?.Invoke(this);
+        }
+        if ((itemSlotUI as EquipmentSlot) != null)
+        {
+            Debug.Log("equipment removed");
+            onRemoveEquipment?.Invoke(equipmentPart);
+        }
     }
 }
 

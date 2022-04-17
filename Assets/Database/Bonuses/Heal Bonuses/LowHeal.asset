@@ -16,4 +16,4 @@ MonoBehaviour:
   color: {r: 0.07539296, g: 1, b: 0, a: 0}
   valueString: 1
   onHeal: {fileID: 11400000, guid: 4c6bea92e6255f74db0ba96a2fab8518, type: 2}
-  value: 50
+  value: 5

@@ -22,7 +22,7 @@ public partial class Damageable : MonoBehaviour
     public bool isInvulnerable { get; set; }
     public int currentHitPoints { get; private set; }
 
-    public UnityEvent OnDeath, OnReceiveDamage, OnHitWhileInvulnerable, OnBecomeVulnerable, OnResetDamage;
+    public UnityEvent OnDeath, OnReceiveDamage, OnHitWhileInvulnerable, OnBecomeVulnerable, OnResetDamage, OnReceivedHeal;
 
     [Tooltip("Quand ce gameobject sera touché, ces gameObjects seront notifiés.")]
     [EnforceType(typeof(Message.IMessageReceiver))]
@@ -75,6 +75,7 @@ public partial class Damageable : MonoBehaviour
     public void ApplyHeal(int healAmount)
     {
         currentHitPoints = Mathf.Clamp(currentHitPoints + healAmount, 0, maxHitPoints);
+        OnReceivedHeal.Invoke();
     }
 
     public void ApplyDamage(DamageMessage data)
@@ -97,10 +98,10 @@ public partial class Damageable : MonoBehaviour
         Vector3 positionToDamager = data.damageSource - transform.position;
         positionToDamager -= transform.up * Vector3.Dot(transform.up, positionToDamager);
 
-        if (Vector3.Angle(forward, positionToDamager) > hitAngle * 0.5f)
-            return;
+        //if (Vector3.Angle(forward, positionToDamager) > hitAngle * 0.5f)
+        //    return;
 
-        isInvulnerable = true;
+        //isInvulnerable = true;
         currentHitPoints -= data.amount;
 
         if (currentHitPoints <= 0)

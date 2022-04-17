@@ -163,6 +163,13 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
             m_Renderers[i].enabled = true;
         }
     }
+
+    // TEMPORAIRE
+    public void Heal(int amount)
+    {
+        m_Damageable.ApplyHeal(amount);
+    }
+    // TEMPORAIRE
     private void FixedUpdate()
     {
 
@@ -178,7 +185,17 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
         if (m_Input.Test)
         {
             Debug.Log("playerController");
-            GainExperience(5000000);
+            GainExperience(50);
+
+            Damageable.DamageMessage msg = new Damageable.DamageMessage()
+            {
+                amount = 5,
+                damager = this,
+                direction = Vector3.up,
+                stopCamera = false
+            };
+
+            m_Damageable.ApplyDamage(msg);
             m_Input.Test = false;
         }
 
@@ -354,11 +371,11 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
         Vector3 forward = damageMessage.damageSource - transform.position;
         forward.y = 0f;
 
-        Vector3 localHurt = transform.InverseTransformDirection(forward);
+        //Vector3 localHurt = transform.InverseTransformDirection(forward);
 
         // Set the HurtFromX and HurtFromY parameters of the animator based on the direction of the damage.
-        m_Animator.SetFloat(m_HashHurtFromX, localHurt.x);
-        m_Animator.SetFloat(m_HashHurtFromY, localHurt.z);
+        //m_Animator.SetFloat(m_HashHurtFromX, localHurt.x);
+        //m_Animator.SetFloat(m_HashHurtFromY, localHurt.z);
 
         // Shake the camera.
         //CameraShake.Shake(CameraShake.k_PlayerHitShakeAmount, CameraShake.k_PlayerHitShakeTime);

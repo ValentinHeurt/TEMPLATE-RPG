@@ -35,6 +35,5 @@ public class Equipment : Item
             Debug.Log("equipment removed");
             onRemoveEquipment?.Invoke(equipmentPart);
         }
-
     }
 }
