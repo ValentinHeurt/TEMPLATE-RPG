@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] GameObject m_Inventory;
     [SerializeField] GameObject m_EquipmentSheet;
+    [SerializeField] GameObject m_QuestWindow;
     public static PlayerInput Instance
     {
         get { return s_Instance; }
@@ -201,6 +202,13 @@ public class PlayerInput : MonoBehaviour
             OpenCloseEquipmentSheet();
         }
     }
+    public void OpenQuestWindow(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && (GameManager.Instance.IsPlaying || GameManager.Instance.IsInInventory))
+        {
+            OpenCloseQuestWindow();
+        }
+    }
     public void NextLineDialogue(InputAction.CallbackContext ctx)
     {
         if (GameManager.Instance.IsInDialogue && ctx.started && DialogueManager.Instance.timeSinceLastLine > 2f)
@@ -210,16 +218,25 @@ public class PlayerInput : MonoBehaviour
     }
     public void OpenCloseInventory()
     {
-        if (m_Inventory.activeSelf && !m_EquipmentSheet.activeSelf)
+        if (m_Inventory.activeSelf && !m_EquipmentSheet.activeSelf && !m_QuestWindow.activeSelf)
             GameManager.Instance.Play();
         else
             GameManager.Instance.Inventory();
         m_Inventory.SetActive(!m_Inventory.activeSelf);
     }
 
+    public void OpenCloseQuestWindow()
+    {
+        if (m_QuestWindow.activeSelf && !m_EquipmentSheet.activeSelf && !m_Inventory.activeSelf)
+            GameManager.Instance.Play();
+        else
+            GameManager.Instance.Inventory();
+        m_Inventory.SetActive(!m_QuestWindow.activeSelf);
+    }
+
     public void OpenCloseEquipmentSheet()
     {
-        if (m_EquipmentSheet.activeSelf && !m_Inventory.activeSelf)
+        if (m_EquipmentSheet.activeSelf && !m_Inventory.activeSelf && !m_QuestWindow.activeSelf)
             GameManager.Instance.Play();
         else
             GameManager.Instance.Inventory();

@@ -33,6 +33,14 @@ public partial class Damageable : MonoBehaviour
 
     Action schedule;
 
+    private void Awake()
+    {
+        // Listeners
+        EventManager.Instance.AddListener<HealGameEvent>(ApplyHeal);
+
+
+    }
+
     void Start()
     {
         ResetDamage();
@@ -72,9 +80,9 @@ public partial class Damageable : MonoBehaviour
         m_Collider.enabled = enabled;
     }
 
-    public void ApplyHeal(int healAmount)
+    public void ApplyHeal(HealGameEvent eventInfo)
     {
-        currentHitPoints = Mathf.Clamp(currentHitPoints + healAmount, 0, maxHitPoints);
+        currentHitPoints = Mathf.Clamp(currentHitPoints + eventInfo.amount, 0, maxHitPoints);
         OnReceivedHeal.Invoke();
     }
 

@@ -15,7 +15,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public float timeSinceLastLine;
 
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
         dialoguePanel.SetActive(false);

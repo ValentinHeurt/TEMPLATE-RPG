@@ -11,6 +11,12 @@ public class Inventory : MonoBehaviour, IItemContainer
     private ItemSlot[] m_ItemSlots = new ItemSlot[0];
     public ItemSlot GetSlotByIndex(int index) => m_ItemSlots[index];
 
+
+    private void Awake()
+    {
+        EventManager.Instance.AddListener<RemoveOneItemGameEvent>(RemoveOneItemAt);
+    }
+
     private void Start()
     {
         m_ItemSlots = new ItemSlot[20];
@@ -29,7 +35,7 @@ public class Inventory : MonoBehaviour, IItemContainer
                         m_ItemSlots[i].quantity += itemSlot.quantity;
                         itemSlot.quantity = 0;
                         onInventoryItemsUpdated.Invoke();
-
+                        EventManager.Instance.QueueEvent(new OnGetItem(itemSlot));
                         return itemSlot;
                     }
                     else if (slotRemainingSpace > 0)
@@ -55,6 +61,7 @@ public class Inventory : MonoBehaviour, IItemContainer
                 else
                 {
                     m_ItemSlots[i] = new ItemSlot(itemSlot.item, itemSlot.item.maxStack);
+                    EventManager.Instance.QueueEvent(new OnGetItem(m_ItemSlots[i]));
                     itemSlot.quantity -= itemSlot.item.maxStack;
                 }
             }
@@ -105,10 +112,12 @@ public class Inventory : MonoBehaviour, IItemContainer
         onInventoryItemsUpdated.Invoke();
     }
 
-    public void RemoveOneItemAt(int slotIndex)
+    public void RemoveOneItemAt(RemoveOneItemGameEvent eventData)
     {
-        RemoveAt(slotIndex, 1);
+        RemoveAt(eventData.slotId, 1);
     }
+
+
 
     public void RemoveItem(ItemSlot itemSlot)
     {

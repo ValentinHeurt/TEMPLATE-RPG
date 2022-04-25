@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
     // TEMPORAIRE
     public void Heal(int amount)
     {
-        m_Damageable.ApplyHeal(amount);
+       // m_Damageable.ApplyHeal(amount);
     }
     // TEMPORAIRE
     private void FixedUpdate()

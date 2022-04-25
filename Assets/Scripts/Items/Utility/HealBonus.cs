@@ -6,12 +6,11 @@ using UnityEngine;
 public class HealBonus : Bonus
 {
     [Header("Heal Bonus")]
-    public IntEvent onHeal;
     public int value;
 
     public override void HandleBonus()
     {
-        onHeal.Raise(value);
+        EventManager.Instance.QueueEvent(new HealGameEvent(value));
         Debug.Log("test heal " + bonusName);
     }
 }

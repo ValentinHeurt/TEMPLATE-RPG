@@ -20,7 +20,7 @@ public class Consumable : Item
     public override void UseItem(ItemSlotUI itemSlotUI)
     {
         ApplyBonuses();
-        onConsumableUsed.Raise(itemSlotUI.SlotIndex);
+        EventManager.Instance.QueueEvent(new RemoveOneItemGameEvent(itemSlotUI.SlotIndex));
     }
 
     public override string GetInfoDisplayedText()
