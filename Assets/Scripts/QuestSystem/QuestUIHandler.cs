@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class QuestUIHandler : MonoBehaviour, IPointerUpHandler
+public class QuestUIHandler : MonoBehaviour, IPointerClickHandler
 {
     public TextMeshProUGUI questNameText;
     public Quest quest;
@@ -14,13 +14,13 @@ public class QuestUIHandler : MonoBehaviour, IPointerUpHandler
         this.quest = quest;
     }
 
-    public virtual void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
-        EventManager.Instance.QueueEvent(new OnQuestSelected(quest));
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            EventManager.Instance.QueueEvent(new OnQuestSelected(quest));
+        }
     }
-
-
-
 
 
 }

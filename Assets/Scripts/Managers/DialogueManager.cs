@@ -6,11 +6,12 @@ public class DialogueManager : Singleton<DialogueManager>
 {
 
     [SerializeField] GameObject dialoguePanel;
-
+    [SerializeField] Answer answerPrefab;
+    [SerializeField] Transform answersContainer;
     [SerializeField] Text dialogueText, nameText;
-
+    
     string npcName;
-    List<string> dialogueLines = new List<string>();
+    DialogueLine dialogueLines;
     int dialogueIndex;
 
     public float timeSinceLastLine;
@@ -20,6 +21,12 @@ public class DialogueManager : Singleton<DialogueManager>
         base.Awake();
         dialoguePanel.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        EventManager.Instance.AddListener<OnAnswerChosen>(ContinueDialogue);
+    }
+
     private void Update()
     {
         if (GameManager.Instance.IsInDialogue)
@@ -27,46 +34,81 @@ public class DialogueManager : Singleton<DialogueManager>
             timeSinceLastLine += Time.deltaTime;
         }
     }
-    public void AddNewDialogue(string[] lines, NPC npc)
+    public void AddNewDialogue(DialogueLine lines, NPC npc)
     {
         GameManager.Instance.Dialogue();
         timeSinceLastLine = 0;
-        dialogueIndex = 0;
-        dialogueLines = new List<string>(lines.Length);
-        dialogueLines.AddRange(lines);
         npcName = npc.interactableName;
+        dialogueLines = lines;
         CreateDialogue();
     }
 
 
     void CreateDialogue()
     {
-        if (dialogueLines.Count == 0)
+        if (dialogueLines == null)
         {
             Debug.LogError($"Erreur de paramétrage, le pnj {npcName} n'a pas de ligne de dialogue.");
         }
         else
         {
-            dialogueText.text = dialogueLines[dialogueIndex];
+            dialogueText.text = dialogueLines.line;
+            if (dialogueLines.answers.Length > 0)
+            {
+                answersContainer.gameObject.SetActive(true);
+                InstantiateNewAnswers(dialogueLines.answers);
+            }
+            else
+            {
+                answersContainer.gameObject.SetActive(false);
+            }
             nameText.text = npcName;
             dialoguePanel.SetActive(true);
         }
     }
 
-    public void ContinueDialogue()
+    public void ContinueDialogue(OnAnswerChosen eventInfo)
     {
         timeSinceLastLine = 0;
-        if (dialogueIndex < dialogueLines.Count - 1)
+        if (eventInfo.answerData.questToStart != null)
         {
-            
-            dialogueIndex++;
-            dialogueText.text = dialogueLines[dialogueIndex];
+            QuestManager.Instance.AddQuest(eventInfo.answerData.questToStart);
+        }
+        if (eventInfo.answerData.nextDialogueLine.line == "")
+        {
+            foreach (Transform answers in answersContainer)
+            {
+                GameObject.Destroy(answers.gameObject);
+            }
+            dialoguePanel.SetActive(false);
+            npcName = "none";
+            dialogueLines = null;
+            GameManager.Instance.Play();
+            return;
+        }
+        dialogueLines = eventInfo.answerData.nextDialogueLine;
+        dialogueText.text = dialogueLines.line;
+        if (dialogueLines.answers.Length > 0)
+        {
+            InstantiateNewAnswers(dialogueLines.answers);
         }
         else
         {
-            dialoguePanel.SetActive(false);
-            npcName = "none";
-            GameManager.Instance.Play();
+            answersContainer.gameObject.SetActive(false);
+        }
+    }
+
+    public void InstantiateNewAnswers(AnswerData[] answerDatas)
+    {
+        foreach (Transform answers in answersContainer)
+        {
+            GameObject.Destroy(answers.gameObject);
+        }
+
+        foreach (AnswerData answerData in answerDatas)
+        {
+            Answer tempAnswer = Instantiate(answerPrefab, answersContainer);
+            tempAnswer.SetData(answerData);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemGoal : QuestGoal
 {
-    public string item;
+    public Item item;
 
     public override string GetDescription()
     {
@@ -19,7 +19,7 @@ public class ItemGoal : QuestGoal
 
     private void OnGetItem(OnGetItem eventInfo)
     {
-        if (eventInfo.itemSlot.item.itemName == item)
+        if (eventInfo.itemSlot.item.itemName == item.itemName)
         {
             CurrentAmount += eventInfo.itemSlot.quantity;
             Evaluate();

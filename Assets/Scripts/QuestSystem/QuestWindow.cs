@@ -12,9 +12,9 @@ public class QuestWindow : MonoBehaviour
     [SerializeField] private QuestUIHandler questPrefab;
     public void Initialize(List<Quest> quests)
     {
-        foreach(GameObject quest in this.quests)
+        foreach(Transform quest in this.quests)
         {
-            GameObject.Destroy(quest);
+            GameObject.Destroy(quest.gameObject);
         }
         foreach (Quest quest in quests)
         {
@@ -23,10 +23,12 @@ public class QuestWindow : MonoBehaviour
         }
         EventManager.Instance.QueueEvent(new OnQuestSelected(quests[0]));
     }
+
     private void OnEnable()
     {
         Initialize(QuestManager.Instance.currentQuests);
     }
+
     private void Awake()
     {
         EventManager.Instance.AddListener<OnQuestSelected>(SetDisplayedQuest);
@@ -36,9 +38,9 @@ public class QuestWindow : MonoBehaviour
         Quest quest = eventInfo.quest;
         currentQuestName.text = quest.Information.Name;
         currentQuestDescription.text = quest.Information.Description;
-        foreach (GameObject goal in goals)
+        foreach (Transform goal in goals)
         {
-            GameObject.Destroy(goal);
+            GameObject.Destroy(goal.gameObject);
         }
         foreach (QuestGoal goal in quest.Goals)
         {

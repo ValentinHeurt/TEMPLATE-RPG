@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPC : Interactable
 {
     //pour être plus simple je fais comme ça mais il faudrait utiliser un petit fichier JSON pour structurer les dialogues
-    public string[] dialogue;
+    public DialogueLine dialogue;
 
     public Color nameColor;
 

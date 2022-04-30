@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170a7c47cd4b60046b922cf101c49130, type: 3}
+  m_Name: quest2
+  m_EditorClassIdentifier: 
+  Information:
+    Name: quest2
+    Icon: {fileID: 0}
+    Description: une autre quest
+  reward:
+    Currency: 10
+    XP: 1100000
+  Goals:
+  - {fileID: 6953378692493680562}
+  completed: 0
+--- !u!114 &6953378692493680562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f17aef7a3c5dd4b92535871db4d2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: recup une rapier frero
+  goalName: Rapier
+  requiredAmount: 1
+  completed: 0
+  OnGoalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  item: {fileID: 11400000, guid: 428f559a637f9364fbd556d3771f29e3, type: 2}

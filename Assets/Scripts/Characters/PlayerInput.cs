@@ -211,10 +211,10 @@ public class PlayerInput : MonoBehaviour
     }
     public void NextLineDialogue(InputAction.CallbackContext ctx)
     {
-        if (GameManager.Instance.IsInDialogue && ctx.started && DialogueManager.Instance.timeSinceLastLine > 2f)
-        {
-            DialogueManager.Instance.ContinueDialogue();
-        }
+        //if (GameManager.Instance.IsInDialogue && ctx.started && DialogueManager.Instance.timeSinceLastLine > 2f)
+        //{
+        //    DialogueManager.Instance.ContinueDialogue();
+        //}
     }
     public void OpenCloseInventory()
     {
@@ -231,7 +231,7 @@ public class PlayerInput : MonoBehaviour
             GameManager.Instance.Play();
         else
             GameManager.Instance.Inventory();
-        m_Inventory.SetActive(!m_QuestWindow.activeSelf);
+        m_QuestWindow.SetActive(!m_QuestWindow.activeSelf);
     }
 
     public void OpenCloseEquipmentSheet()
@@ -242,8 +242,5 @@ public class PlayerInput : MonoBehaviour
             GameManager.Instance.Inventory();
         m_EquipmentSheet.SetActive(!m_EquipmentSheet.activeSelf);
     }
-
-
-
 }
 

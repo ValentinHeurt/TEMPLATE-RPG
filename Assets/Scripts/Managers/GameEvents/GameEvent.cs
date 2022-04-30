@@ -43,3 +43,12 @@ public class OnQuestSelected : GameEvent
         this.quest = quest;
     }
 }
+public class OnAnswerChosen : GameEvent
+{
+    public AnswerData answerData;
+
+    public OnAnswerChosen(AnswerData answerData)
+    {
+        this.answerData = answerData;
+    }
+}
