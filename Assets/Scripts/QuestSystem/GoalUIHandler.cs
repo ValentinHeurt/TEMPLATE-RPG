@@ -6,7 +6,7 @@ public class GoalUIHandler : MonoBehaviour
 {
     public TextMeshProUGUI goalNameText;
     public TextMeshProUGUI goalInformationText;
-    public void FillInformations(string name, string current, string required)
+    public void FillInformations(string name, string current, string required, bool completed)
     {
         goalNameText.text = name;
         goalInformationText.text = $"{current} / {required}";

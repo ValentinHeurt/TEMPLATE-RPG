@@ -1438,8 +1438,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableName: grosse merde
   dialogue:
-    answers: []
-    line: 
+    answers:
+    - nextDialogueLine:
+        answers: []
+        line: 
+      questToStart: {fileID: 0}
+      questNeededToDisplay: {fileID: 0}
+      text: Oui
+    - nextDialogueLine:
+        answers: []
+        line: 
+      questToStart: {fileID: 0}
+      questNeededToDisplay: {fileID: 11400000, guid: d84b094d219a398488c70c1bb556e7e6, type: 2}
+      text: "Rendre qu\xEAte katana"
+    line: Bonjour
   nameColor: {r: 0.10457456, g: 0.8867924, b: 0.19265945, a: 0}
 --- !u!65 &564660742
 BoxCollider:
@@ -10310,9 +10322,11 @@ MonoBehaviour:
             answers: []
             line: 
           questToStart: {fileID: 11400000, guid: d84b094d219a398488c70c1bb556e7e6, type: 2}
+          questNeededToDisplay: {fileID: 0}
           text: ^^
         line: Hihi tu es gentil toi :3
       questToStart: {fileID: 0}
+      questNeededToDisplay: {fileID: 0}
       text: Bonjour
     - nextDialogueLine:
         answers:
@@ -10320,9 +10334,11 @@ MonoBehaviour:
             answers: []
             line: 
           questToStart: {fileID: 11400000, guid: 3fe8e6be2f2cf004d9bdaee134872e0e, type: 2}
+          questNeededToDisplay: {fileID: 0}
           text: :(
         line: Oh bah non c'est pas cool :(
       questToStart: {fileID: 0}
+      questNeededToDisplay: {fileID: 0}
       text: "Nike bien ta m\xE8re"
     line: Bonjour
   nameColor: {r: 0.8018868, g: 0.14751692, b: 0.14751692, a: 0}
@@ -11676,6 +11692,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8398850380748003998, guid: 3e92d34f8ccf9504297b5acf6dcaa921, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398850382067894238, guid: 3e92d34f8ccf9504297b5acf6dcaa921, type: 3}
+      propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

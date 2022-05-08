@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
+
 public class QuestManager : Singleton<QuestManager>
 {
     [SerializeField] private GameObject questHolder;
@@ -28,6 +30,15 @@ public class QuestManager : Singleton<QuestManager>
             currentQuests.Add(quest);
         }
     }
+    public bool HasQuest(Quest quest)
+    {
+        return currentQuests.Contains(quest);
+    }
+
+    public bool CanQuestBeFinished(Quest quest)
+    {
+        return quest.canComplete;
+    }
 
     public void FollowQuest(Quest quest)
     {
@@ -41,6 +52,11 @@ public class QuestManager : Singleton<QuestManager>
     {
         followedQuest = null;
         questHolder.SetActive(false);
+    }
+
+    public void TryFinishQuest(Quest quest)
+    {
+        quest.FinishQuest();
     }
 
     public void HandleReward(Quest quest)

@@ -45,8 +45,7 @@ public class QuestWindow : MonoBehaviour
         foreach (QuestGoal goal in quest.Goals)
         {
             GoalUIHandler tempGoal = Instantiate(goalPrefab, goals);
-            tempGoal.FillInformations(goal.goalName, goal.CurrentAmount.ToString(), goal.requiredAmount.ToString());
+            tempGoal.FillInformations(goal.goalName, goal.CurrentAmount.ToString(), goal.requiredAmount.ToString(), goal.completed);
         }
-
     }
 }

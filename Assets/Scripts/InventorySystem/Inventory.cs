@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour, IItemContainer
                         m_ItemSlots[i].quantity += itemSlot.quantity;
                         itemSlot.quantity = 0;
                         onInventoryItemsUpdated.Invoke();
-                        EventManager.Instance.QueueEvent(new OnGetItem(itemSlot));
+                        EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
                         return itemSlot;
                     }
                     else if (slotRemainingSpace > 0)
@@ -54,6 +54,7 @@ public class Inventory : MonoBehaviour, IItemContainer
                 if (itemSlot.quantity <= itemSlot.item.maxStack)
                 {
                     m_ItemSlots[i] = itemSlot;
+                    EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
                     itemSlot.quantity = 0;
                     onInventoryItemsUpdated.Invoke();
                     return itemSlot;
@@ -61,12 +62,11 @@ public class Inventory : MonoBehaviour, IItemContainer
                 else
                 {
                     m_ItemSlots[i] = new ItemSlot(itemSlot.item, itemSlot.item.maxStack);
-                    EventManager.Instance.QueueEvent(new OnGetItem(m_ItemSlots[i]));
+                    EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
                     itemSlot.quantity -= itemSlot.item.maxStack;
                 }
             }
         }
-
         onInventoryItemsUpdated.Invoke();
 
         return itemSlot;
@@ -98,6 +98,17 @@ public class Inventory : MonoBehaviour, IItemContainer
         return false;
     }
 
+    public int ItemCount(Item item)
+    {
+        int count = 0;
+        foreach (ItemSlot itemSlot in m_ItemSlots)
+        {
+            if (itemSlot.item == null || itemSlot.item != item) { continue; }
+            count += itemSlot.quantity;
+        }
+        return count;
+    }
+
     public void RemoveAt(int slotIndex, int quantity = 100000)
     {
         if (slotIndex < 0 || slotIndex > m_ItemSlots.Length - 1) { return; }
@@ -109,12 +120,14 @@ public class Inventory : MonoBehaviour, IItemContainer
         {
             m_ItemSlots[slotIndex] = new ItemSlot();
         }
+        EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
         onInventoryItemsUpdated.Invoke();
     }
 
     public void RemoveOneItemAt(RemoveOneItemGameEvent eventData)
     {
         RemoveAt(eventData.slotId, 1);
+        EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
     }
 
 
@@ -139,6 +152,7 @@ public class Inventory : MonoBehaviour, IItemContainer
                         {
                             m_ItemSlots[i] = new ItemSlot();
                             onInventoryItemsUpdated.Invoke();
+                            EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
                             return;
                         }
                     }
@@ -181,6 +195,7 @@ public class Inventory : MonoBehaviour, IItemContainer
         {
             m_ItemSlots[index] = itemSlot;
             onInventoryItemsUpdated.Invoke();
+            EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
             return true;
         }
         return false;

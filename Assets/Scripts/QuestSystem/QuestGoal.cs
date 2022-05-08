@@ -10,6 +10,7 @@ public abstract class QuestGoal : ScriptableObject
     public int CurrentAmount { get; protected set; }
     public int requiredAmount = 1;
     public bool completed;
+    public bool questCompleted = false;
 
     [HideInInspector] public UnityEvent OnGoalCompleted;
 
@@ -20,23 +21,29 @@ public abstract class QuestGoal : ScriptableObject
 
     public virtual void Initialize()
     {
+        CurrentAmount = 0;
         completed = false;
+        questCompleted = false;
         OnGoalCompleted = new UnityEvent();
     }
 
     protected void Evaluate()
     {
+        if (questCompleted) return;
         if(CurrentAmount >= requiredAmount)
         {
-            Complete();
+            Complete(true);
+        }
+        else
+        {
+            Complete(false);
         }
     }
 
-    private void Complete()
+    private void Complete(bool state)
     {
-        completed = true;
+        completed = state;
         OnGoalCompleted.Invoke();
-        //removeall ??
     }
     public void Skip()
     {

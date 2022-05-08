@@ -11,6 +11,10 @@ public class QuestUIHandler : MonoBehaviour, IPointerClickHandler
     public void FillInformations(string name, Quest quest)
     {
         questNameText.text = name;
+        if (quest.completed)
+        {
+            questNameText.text = $"<s>{name}</s>";
+        }
         this.quest = quest;
     }
 

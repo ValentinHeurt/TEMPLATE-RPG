@@ -74,6 +74,10 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             QuestManager.Instance.AddQuest(eventInfo.answerData.questToStart);
         }
+        if (eventInfo.answerData.questNeededToDisplay != null)
+        {
+            QuestManager.Instance.TryFinishQuest(eventInfo.answerData.questNeededToDisplay);
+        }
         if (eventInfo.answerData.nextDialogueLine.line == "")
         {
             foreach (Transform answers in answersContainer)
@@ -107,8 +111,20 @@ public class DialogueManager : Singleton<DialogueManager>
 
         foreach (AnswerData answerData in answerDatas)
         {
-            Answer tempAnswer = Instantiate(answerPrefab, answersContainer);
-            tempAnswer.SetData(answerData);
+            if (answerData.questNeededToDisplay == null)
+            {
+                Answer tempAnswer = Instantiate(answerPrefab, answersContainer);
+                tempAnswer.SetData(answerData);
+            }
+            else
+            {
+                if (QuestManager.Instance.HasQuest(answerData.questNeededToDisplay) && QuestManager.Instance.CanQuestBeFinished(answerData.questNeededToDisplay))
+                {
+                    Answer tempAnswer = Instantiate(answerPrefab, answersContainer);
+                    tempAnswer.SetData(answerData);
+                }
+            }
+
         }
     }
 }

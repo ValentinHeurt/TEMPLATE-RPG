@@ -26,12 +26,12 @@ public class RemoveOneItemGameEvent : GameEvent
     }
 }
 
-public class OnGetItem : GameEvent
+public class OnInventoryUpdate : GameEvent
 {
-    public ItemSlot itemSlot;
-    public OnGetItem(ItemSlot item)
+    public Inventory inventory;
+    public OnInventoryUpdate(Inventory inventory)
     {
-        this.itemSlot = item;
+        this.inventory = inventory;
     }
 }
 

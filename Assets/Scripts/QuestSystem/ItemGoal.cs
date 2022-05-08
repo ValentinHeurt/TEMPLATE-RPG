@@ -14,16 +14,14 @@ public class ItemGoal : QuestGoal
     public override void Initialize()
     {
         base.Initialize();
-        EventManager.Instance.AddListener<OnGetItem>(OnGetItem);
+        EventManager.Instance.AddListener<OnInventoryUpdate>(OnInventoryUpdate);
     }
 
-    private void OnGetItem(OnGetItem eventInfo)
+    private void OnInventoryUpdate(OnInventoryUpdate eventInfo)
     {
-        if (eventInfo.itemSlot.item.itemName == item.itemName)
-        {
-            CurrentAmount += eventInfo.itemSlot.quantity;
-            Evaluate();
-        }
+        if (questCompleted) return;
+        CurrentAmount = eventInfo.inventory.ItemCount(item);
+        Evaluate();
     }
 
 }

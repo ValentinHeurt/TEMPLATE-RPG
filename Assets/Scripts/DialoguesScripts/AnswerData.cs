@@ -7,5 +7,6 @@ public class AnswerData
 {
     public DialogueLine nextDialogueLine;
     public Quest questToStart;
+    public Quest questNeededToDisplay;
     public string text;
 }

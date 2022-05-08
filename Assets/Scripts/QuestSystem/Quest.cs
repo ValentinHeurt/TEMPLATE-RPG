@@ -29,6 +29,7 @@ public class Quest : ScriptableObject
     public List<QuestGoal> Goals;
     public bool completed;
     public QuestCompletedEvent OnQuestCompleted;
+    public bool canComplete;
 
     public virtual void Initialize()
     {
@@ -42,17 +43,23 @@ public class Quest : ScriptableObject
         }
     }
 
-    private void CheckGoals()
+    public void CheckGoals()
     {
-        completed = Goals.All(goal => goal.completed);
-        if (completed)
+        canComplete = Goals.All(goal => goal.completed);
+    }
+
+    public void FinishQuest()
+    {
+        if (canComplete)
         {
+            completed = true;
             // donner reward
             OnQuestCompleted.Invoke(this);
             OnQuestCompleted.RemoveAllListeners();
             foreach (var goal in Goals)
             {
                 goal.OnGoalCompleted.RemoveAllListeners();
+                goal.questCompleted = true;
             }
         }
     }
