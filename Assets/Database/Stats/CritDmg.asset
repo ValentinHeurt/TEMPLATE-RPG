@@ -9,20 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186b34f029f9d164c82fec42689b035b, type: 3}
-  m_Name: Common
+  m_Script: {fileID: 11500000, guid: f26f671cf7174574590118e38df79c0f, type: 3}
+  m_Name: CritDmg
   m_EditorClassIdentifier: 
-  name: Common
-  textColor: {r: 0.6226415, g: 0.5844607, b: 0.5844607, a: 1}
-  upgradeRates:
-  - 100
-  - 100
-  - 100
-  - 75
-  - 75
-  - 75
-  - 75
-  - 50
-  - 50
-  - 50
-  maxAmeliorationState: 10
+  StatName: 3
+  StatDescription: Crit Dmg

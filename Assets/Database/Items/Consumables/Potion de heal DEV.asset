@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Potion de heal DEV
   m_EditorClassIdentifier: 
   ID: potionHealDev
-  itemType: Consumable
+  itemType: 2
   rarity: {fileID: 11400000, guid: a6523e44dd751a54b8bef9db36af6365, type: 2}
   description: Potion de heal dev
   itemName: Potion de heal

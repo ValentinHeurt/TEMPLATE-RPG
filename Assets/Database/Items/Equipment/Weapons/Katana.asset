@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: Katana
   m_EditorClassIdentifier: 
   ID: 0
-  itemType: Weapon
+  itemType: 0
   rarity: {fileID: 11400000, guid: a6523e44dd751a54b8bef9db36af6365, type: 2}
   description: Ceci est un katana
   itemName: Katana
   maxStack: 1
   icon: {fileID: 21300000, guid: 03ed7da90de8a3e419e1a9de9cc5ab46, type: 3}
   stats:
-  - statType: 0
+  - stat: {fileID: 11400000, guid: c861cb02c6410554ba4764bbd2ef93af, type: 2}
+    statAdditives: []
     baseValue: 10
-    statDescription: Cefor
   equipmentPart: 0
+  ameliorationPercent: 10
+  maxAmeliorationState: 10
+  ameliorationState: 0
   weaponPrefab: {fileID: 1389273699563893268, guid: 442a99096053f63449150b2799e5e7d7, type: 3}

@@ -6,13 +6,13 @@ public abstract class Item : ScriptableObject
 {
     [Header("Item Fields")]
     public string ID;
-    public string itemType;
+    public ItemType itemType;
     [SerializeField] public Rarity rarity = null;
     [TextArea] public string description;
     public string itemName;
     [Min(1)]public int maxStack;
     public Sprite icon;
-    public string ColoredName {
+    public virtual string ColoredName {
         get
         {
             string hexColor = ColorUtility.ToHtmlStringRGB(rarity.Color);
@@ -22,4 +22,12 @@ public abstract class Item : ScriptableObject
     public abstract string GetInfoDisplayedText();
 
     public abstract void UseItem(ItemSlotUI itemSlotUI);
+
+}
+
+public enum ItemType
+{
+    WEAPON,
+    EQUIPMENT,
+    CONSUMABLE
 }

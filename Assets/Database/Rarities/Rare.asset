@@ -14,3 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rare
   textColor: {r: 0, g: 0.52219677, b: 1, a: 1}
+  upgradeRates:
+  - 100
+  - 100
+  - 100
+  - 75
+  - 75
+  - 75
+  - 50
+  - 50
+  - 50
+  - 35
+  - 35
+  - 1
+  maxAmeliorationState: 12

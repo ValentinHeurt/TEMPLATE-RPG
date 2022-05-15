@@ -1,32 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class CharacterStats
 {
     public List<BaseStat> stats = new List<BaseStat>();
 
-    public CharacterStats(float atkFlat, float atkPercent, float critRate, float critDmg)
+    public BaseStat GetStat(StatType statName)
     {
-        stats = new List<BaseStat>()
-        {
-            new BaseStat(BaseStat.StatType.AtkFlat, atkFlat, "Attaque"),
-            new BaseStat(BaseStat.StatType.AtkPercent, atkPercent, "Attaque %"),
-            new BaseStat(BaseStat.StatType.CritRate, critRate, "Taux crit"),
-            new BaseStat(BaseStat.StatType.CritDmg, critDmg, "Dommages critiques")
-        };
-    }
-
-    public BaseStat GetStat(BaseStat.StatType statType)
-    {
-        return this.stats.Find(x => x.statType == statType);
+        return this.stats.Find(x => x.stat.StatName == statName);
     }
 
     public void AddStatBonus(List<BaseStat> statBonuses)
     {
         foreach (BaseStat statBonus in statBonuses)
         {
-            GetStat(statBonus.statType).AddStatBonus(new StatBonus(statBonus.baseValue));
+            GetStat(statBonus.stat.StatName).AddStatBonus(new StatBonus(statBonus.baseValue));
         }
     }
 
@@ -34,7 +23,7 @@ public class CharacterStats
     {
         foreach (BaseStat statBonus in statBonuses)
         {
-            GetStat(statBonus.statType).RemoveStatBonus(new StatBonus(statBonus.baseValue));
+            GetStat(statBonus.stat.StatName).RemoveStatBonus(new StatBonus(statBonus.baseValue));
         }
     }
 }

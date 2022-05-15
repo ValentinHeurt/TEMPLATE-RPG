@@ -30,22 +30,24 @@ public class InteractableDisplayer : MonoBehaviour
 
     void DisplayInteractable(Collider[] interactables)
     {
-        
-        float height = 0;
-        float biggestWidth = 0;
-        DeleteAllToolTips();
-        foreach (Collider interactable in interactables)
+        if (GameManager.Instance.IsPlaying)
         {
-            ToolTip tp = Instantiate(m_toolTipPrefab, transform);
-            tp.InitToolTip(interactable.GetComponent<Interactable>().ColoredName, new Vector2(0, height + verticalPadding), new Vector2(horizontalPadding,0));
-            height += tp.backgroundRectTransform.sizeDelta.y + (verticalPadding);
-            if (biggestWidth < tp.backgroundRectTransform.sizeDelta.x)
+            float height = 0;
+            float biggestWidth = 0;
+            DeleteAllToolTips();
+            foreach (Collider interactable in interactables)
             {
-                biggestWidth = tp.backgroundRectTransform.sizeDelta.x;
+                ToolTip tp = Instantiate(m_toolTipPrefab, transform);
+                tp.InitToolTip(interactable.GetComponent<Interactable>().ColoredName, new Vector2(0, height + verticalPadding), new Vector2(horizontalPadding, 0));
+                height += tp.backgroundRectTransform.sizeDelta.y + (verticalPadding);
+                if (biggestWidth < tp.backgroundRectTransform.sizeDelta.x)
+                {
+                    biggestWidth = tp.backgroundRectTransform.sizeDelta.x;
+                }
+                toolTips.Add(tp);
             }
-            toolTips.Add(tp);
+            m_RectTransform.sizeDelta = new Vector2(biggestWidth, height);
         }
-        m_RectTransform.sizeDelta = new Vector2(biggestWidth, height);
     }
 
     void DeleteAllToolTips()
@@ -56,7 +58,6 @@ public class InteractableDisplayer : MonoBehaviour
         }
         toolTips = new List<ToolTip>();
     }
-
     void Test(string[] interactables)
     {
 

@@ -16,7 +16,7 @@ public class Consumable : Item
             bonus.HandleBonus();
         }
     }
-
+    
     public override void UseItem(ItemSlotUI itemSlotUI)
     {
         ApplyBonuses();

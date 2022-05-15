@@ -103,13 +103,6 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
     const float k_GroundAcceleration = 20f;
     const float k_GroundDeceleration = 25f;
 
-    //Stats
-    [Header("Player base stats")]
-    public float atkFlat;
-    public float atkPercent;
-    public float critDmg;
-    public float critRate;
-
     public bool isWeaponEquipped = false;
     
     // Events
@@ -129,7 +122,7 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
 
     void Awake()
     {
-        m_CharacterStats = new CharacterStats(atkFlat, atkPercent, critRate, critDmg);
+        //m_CharacterStats = new CharacterStats(atkFlat, atkPercent, critRate, critDmg);
         m_Input = GetComponent<PlayerInput>();
         m_Animator = GetComponent<Animator>();
         m_CharacterController = GetComponent<CharacterController>();
@@ -173,8 +166,8 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
     private void FixedUpdate()
     {
 
-        Debug.Log("AtkFlat : " + m_CharacterStats.GetStat(BaseStat.StatType.AtkFlat).baseValue);
-        Debug.Log("AtkFlat after calculation : " + m_CharacterStats.GetStat(BaseStat.StatType.AtkFlat).GetCalculatedStatValue());
+        Debug.Log("AtkFlat : " + m_CharacterStats.GetStat(StatType.AtkFlat).baseValue);
+        Debug.Log("AtkFlat after calculation : " + m_CharacterStats.GetStat(StatType.AtkFlat).GetCalculatedStatValue());
 
         CacheAnimatorState();
 
@@ -278,16 +271,18 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
 
     void DetectInteractable()
     {
-        m_OverlapInteractable = Physics.OverlapSphere(transform.position + interactableCheckOffset, interactableCheckRadius, interactableLayer);
-        for (int i = 0; i < m_OverlapInteractable.Length; i++)
+        if (GameManager.Instance.IsPlaying)
         {
-            Debug.Log(m_OverlapInteractable[i].gameObject.name + " : detecté");
+            m_OverlapInteractable = Physics.OverlapSphere(transform.position + interactableCheckOffset, interactableCheckRadius, interactableLayer);
+            for (int i = 0; i < m_OverlapInteractable.Length; i++)
+            {
+                Debug.Log(m_OverlapInteractable[i].gameObject.name + " : detecté");
+            }
         }
     }
 
     void DisplayInteractable()
     {
-        
         if (m_DisplayedInteractable == null || !Enumerable.SequenceEqual(m_DisplayedInteractable, m_OverlapInteractable))
         {
             Debug.Log("diff");
@@ -297,11 +292,6 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
             Array.Copy(m_DisplayedInteractable, 0, displayedInteractable, 0, nbDisplayed);
             OnDisplayedInteractableChanged?.Invoke(displayedInteractable);
         }
-        //if (m_DisplayedInteractableIndex != m_InteractableIndex)
-        //{
-        //    m_DisplayedInteractableIndex = m_InteractableIndex;
-        //    OnDisplayedInteractableIndexChanged?.Invoke(m_DisplayedInteractableIndex);
-        //}
     }
 
     public void InteractButton(InputAction.CallbackContext ctx)

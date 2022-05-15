@@ -47,7 +47,10 @@ public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler,
             if (!isDragging)
             {
                 isDragging = true;
-                onMouseEndHoverItem.Raise();
+                if (onMouseEndHoverItem != null)
+                {
+                    onMouseEndHoverItem.Raise();
+                }
                 originalParent = transform.parent;
                 transform.SetParent(transform.parent.parent);
                 originalSortingOrder = mainCanvas.sortingOrder;
@@ -76,14 +79,20 @@ public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         if (!Mouse.current.leftButton.isPressed)
         {
-            onMouseStartHoverItem.Raise(itemSlotUI.SlotItem);
+            if (onMouseStartHoverItem != null)
+            {
+                onMouseStartHoverItem.Raise(itemSlotUI.SlotItem);
+            }
         }
         isHovering = true;
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("exit");
-        onMouseEndHoverItem.Raise();
+        if (onMouseEndHoverItem != null)
+        {
+            onMouseEndHoverItem.Raise();
+        }
         isHovering = false;
     }
 

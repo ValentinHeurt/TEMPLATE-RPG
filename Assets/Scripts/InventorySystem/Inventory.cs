@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour, IItemContainer
     private void Awake()
     {
         EventManager.Instance.AddListener<RemoveOneItemGameEvent>(RemoveOneItemAt);
+        EventManager.Instance.AddListener<AddOneItemGameEvent>(AddOneItem);
     }
 
     private void Start()
@@ -130,7 +131,10 @@ public class Inventory : MonoBehaviour, IItemContainer
         EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
     }
 
-
+    public void AddOneItem(AddOneItemGameEvent eventData)
+    {
+        AddItem(new ItemSlot(eventData.item, 1));
+    }
 
     public void RemoveItem(ItemSlot itemSlot)
     {

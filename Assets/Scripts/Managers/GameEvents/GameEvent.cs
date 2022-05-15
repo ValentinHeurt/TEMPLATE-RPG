@@ -26,6 +26,16 @@ public class RemoveOneItemGameEvent : GameEvent
     }
 }
 
+public class AddOneItemGameEvent : GameEvent
+{
+    public Item item;
+
+    public AddOneItemGameEvent(Item item)
+    {
+        this.item = item;
+    }
+}
+
 public class OnInventoryUpdate : GameEvent
 {
     public Inventory inventory;
@@ -50,5 +60,15 @@ public class OnAnswerChosen : GameEvent
     public OnAnswerChosen(AnswerData answerData)
     {
         this.answerData = answerData;
+    }
+}
+
+public class OnToolTableSlotUpdated : GameEvent
+{
+    public Item item;
+
+    public OnToolTableSlotUpdated(Item item)
+    {
+        this.item = item;
     }
 }

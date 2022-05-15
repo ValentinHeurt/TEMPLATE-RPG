@@ -13,7 +13,7 @@ public class Weapon : Equipment
         StringBuilder builder = new StringBuilder();
         foreach (BaseStat stat in stats)
         {
-            builder.Append("<color=green>+").Append(stat.baseValue).Append(" ").Append(stat.statDescription).Append("</color>").AppendLine();
+            builder.Append("<color=green>+").Append(stat.baseValue).Append(" ").Append(stat.stat.StatDescription).Append("</color>").AppendLine();
         }
         return builder.ToString();
     }

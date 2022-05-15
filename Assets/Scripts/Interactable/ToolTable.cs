@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : Interactable
+public class ToolTable : Interactable
 {
-    public DialogueLine dialogue;
-
     public Color nameColor;
-
+    public GameObject toolTable;
     public override void PlayerInteracted(GameObject player)
     {
-        DialogueManager.Instance.AddNewDialogue(dialogue, this);
+        toolTable.SetActive(true);
+        GameManager.Instance.CursorLocker += 1;
+        if (GameManager.Instance.CursorLocker == 0)
+            GameManager.Instance.Play();
+        else
+            GameManager.Instance.Inventory();
     }
-
     public override string ColoredName
     {
         get
@@ -21,4 +23,5 @@ public class NPC : Interactable
             return $"<color=#{hexColor}>{interactableName}</color>";
         }
     }
+
 }

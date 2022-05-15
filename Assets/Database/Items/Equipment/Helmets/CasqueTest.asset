@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: CasqueTest
   m_EditorClassIdentifier: 
   ID: 6456
-  itemType: Equipment
+  itemType: 1
   rarity: {fileID: 11400000, guid: a6523e44dd751a54b8bef9db36af6365, type: 2}
   description: Ceci est un casque de test
   itemName: Casque de test
   maxStack: 1
   icon: {fileID: 21300000, guid: 1a1da36a104725048b8d2388fb8d321d, type: 3}
   stats:
-  - statType: 0
+  - stat: {fileID: 11400000, guid: c861cb02c6410554ba4764bbd2ef93af, type: 2}
+    statAdditives: []
     baseValue: 3
-    statDescription: dd
   equipmentPart: 1
+  ameliorationState: 0

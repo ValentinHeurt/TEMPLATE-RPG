@@ -218,7 +218,8 @@ public class PlayerInput : MonoBehaviour
     }
     public void OpenCloseInventory()
     {
-        if (m_Inventory.activeSelf && !m_EquipmentSheet.activeSelf && !m_QuestWindow.activeSelf)
+        GameManager.Instance.CursorLocker += m_Inventory.activeSelf ? -1 : 1;
+        if (GameManager.Instance.CursorLocker == 0)
             GameManager.Instance.Play();
         else
             GameManager.Instance.Inventory();
@@ -227,7 +228,8 @@ public class PlayerInput : MonoBehaviour
 
     public void OpenCloseQuestWindow()
     {
-        if (m_QuestWindow.activeSelf && !m_EquipmentSheet.activeSelf && !m_Inventory.activeSelf)
+        GameManager.Instance.CursorLocker += m_QuestWindow.activeSelf ? -1 : 1;
+        if (GameManager.Instance.CursorLocker == 0)
             GameManager.Instance.Play();
         else
             GameManager.Instance.Inventory();
@@ -236,7 +238,8 @@ public class PlayerInput : MonoBehaviour
 
     public void OpenCloseEquipmentSheet()
     {
-        if (m_EquipmentSheet.activeSelf && !m_Inventory.activeSelf && !m_QuestWindow.activeSelf)
+        GameManager.Instance.CursorLocker += m_EquipmentSheet.activeSelf ? -1 : 1;
+        if (GameManager.Instance.CursorLocker == 0)
             GameManager.Instance.Play();
         else
             GameManager.Instance.Inventory();

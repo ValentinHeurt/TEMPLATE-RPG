@@ -54,7 +54,7 @@ public class TooltipPopup : MonoBehaviour
     {
         StringBuilder builder = new StringBuilder();
 
-        builder.Append("<size=35>").Append(item.ColoredName).Append("</size>").AppendLine();
+        builder.Append("<size=35>").Append(item.ColoredName).Append("</size><line-height=0>").AppendLine("<align=right>").Append($"<size=25>{item.rarity.ColoredName}</size></align><line-height=1em>").AppendLine().AppendLine();
         builder.Append(item.GetInfoDisplayedText());
 
         infoText.text = builder.ToString();

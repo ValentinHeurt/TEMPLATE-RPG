@@ -16,7 +16,8 @@ public class PickableItem : Interactable
     {
         if (interacted.GetComponent<Inventory>() != null)
         {
-            interacted.GetComponent<Inventory>().AddItem(itemSlot);
+            Item item = Instantiate(itemSlot.item);
+            interacted.GetComponent<Inventory>().AddItem(new ItemSlot(item, itemSlot.quantity));
         }
         
         Destroy(gameObject);

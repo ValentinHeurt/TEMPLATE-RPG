@@ -37,6 +37,14 @@ public class InventorySlot : ItemSlotUI, IDropHandler
                 equipmentHUD.RemoveItem((itemDragHandler.ItemSlotUI as EquipmentSlot).equipmentPart);
             }
         }
+        if ((itemDragHandler.ItemSlotUI as TableSlot) != null)
+        {
+            if (itemDragHandler.ItemSlotUI.SlotItem != null)
+            {
+                inventory.AddItem(new ItemSlot(itemDragHandler.ItemSlotUI.SlotItem,1));
+                (itemDragHandler.ItemSlotUI as TableSlot).RemoveItemFromSlot();
+            }
+        }
     }
 
     public override void UpdateSlotUI()
