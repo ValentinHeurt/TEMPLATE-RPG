@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC : Interactable
 {
-    public DialogueLine dialogue;
+    public Dialogue dialogue;
 
     public Color nameColor;
 

@@ -27,6 +27,11 @@ public abstract class QuestGoal : ScriptableObject
         OnGoalCompleted = new UnityEvent();
     }
 
+    public virtual void CheckGoal()
+    {
+
+    }
+
     protected void Evaluate()
     {
         if (questCompleted) return;

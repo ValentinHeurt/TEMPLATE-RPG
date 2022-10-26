@@ -41,6 +41,7 @@ public class Quest : ScriptableObject
             goal.Initialize();
             goal.OnGoalCompleted.AddListener(delegate { CheckGoals(); });
         }
+
     }
 
     public void CheckGoals()

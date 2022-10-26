@@ -72,3 +72,13 @@ public class OnToolTableSlotUpdated : GameEvent
         this.item = item;
     }
 }
+
+public class OnAmeliorationTableItemUpdated : GameEvent
+{
+    public Item item;
+
+    public OnAmeliorationTableItemUpdated(Item item)
+    {
+        this.item = item;
+    }
+}

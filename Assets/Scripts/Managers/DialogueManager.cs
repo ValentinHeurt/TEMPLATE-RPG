@@ -11,7 +11,8 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField] Text dialogueText, nameText;
     
     string npcName;
-    DialogueLine dialogueLines;
+    Dialogue dialogueLines;
+    public DialogueLine dialogueLine;
     int dialogueIndex;
 
     public float timeSinceLastLine;
@@ -34,7 +35,7 @@ public class DialogueManager : Singleton<DialogueManager>
             timeSinceLastLine += Time.deltaTime;
         }
     }
-    public void AddNewDialogue(DialogueLine lines, NPC npc)
+    public void AddNewDialogue(Dialogue lines, NPC npc)
     {
         GameManager.Instance.Dialogue();
         timeSinceLastLine = 0;
@@ -42,7 +43,6 @@ public class DialogueManager : Singleton<DialogueManager>
         dialogueLines = lines;
         CreateDialogue();
     }
-
 
     void CreateDialogue()
     {
@@ -52,11 +52,12 @@ public class DialogueManager : Singleton<DialogueManager>
         }
         else
         {
-            dialogueText.text = dialogueLines.line;
-            if (dialogueLines.answers.Length > 0)
+            dialogueLine = dialogueLines.dialogueLine;
+            dialogueText.text = dialogueLine.line;
+            if (dialogueLine.answers.Count > 0)
             {
                 answersContainer.gameObject.SetActive(true);
-                InstantiateNewAnswers(dialogueLines.answers);
+                InstantiateNewAnswers(dialogueLine.answers);
             }
             else
             {
@@ -78,23 +79,30 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             QuestManager.Instance.TryFinishQuest(eventInfo.answerData.questNeededToDisplay);
         }
+        if (eventInfo.answerData.itemToGive != null)
+        {
+            EventManager.Instance.QueueEvent(new AddOneItemGameEvent(eventInfo.answerData.itemToGive));
+        }
+        //if (eventInfo.answerData)
+        //{
+
+        //}
+
         if (eventInfo.answerData.nextDialogueLine.line == "")
         {
-            foreach (Transform answers in answersContainer)
-            {
-                GameObject.Destroy(answers.gameObject);
-            }
+            DestroyAnswers();
             dialoguePanel.SetActive(false);
             npcName = "none";
             dialogueLines = null;
             GameManager.Instance.Play();
             return;
         }
-        dialogueLines = eventInfo.answerData.nextDialogueLine;
-        dialogueText.text = dialogueLines.line;
-        if (dialogueLines.answers.Length > 0)
+        dialogueLine = eventInfo.answerData.nextDialogueLine;
+        dialogueText.text = dialogueLine.line;
+        if (dialogueLine.answers.Count > 0)
         {
-            InstantiateNewAnswers(dialogueLines.answers);
+            answersContainer.gameObject.SetActive(true);
+            InstantiateNewAnswers(dialogueLine.answers);
         }
         else
         {
@@ -102,7 +110,43 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    public void InstantiateNewAnswers(AnswerData[] answerDatas)
+    public void ContinueDialogueNoAnswers()
+    {
+        if (dialogueLine.answers == null || dialogueLine.answers.Count == 0)
+        {
+            timeSinceLastLine = 0;
+            if(dialogueLine.directNextLine == null || dialogueLine.directNextLine.Count == 0)
+            {
+                DestroyAnswers();
+                dialoguePanel.SetActive(false);
+                npcName = "none";
+                dialogueLines = null;
+                GameManager.Instance.Play();
+                return;
+            }
+        }
+        dialogueLine = dialogueLine.directNextLine[0];
+        dialogueText.text = dialogueLine.line;
+        if (dialogueLine.answers.Count > 0)
+        {
+            answersContainer.gameObject.SetActive(true);
+            InstantiateNewAnswers(dialogueLine.answers);
+        }
+        else
+        {
+            answersContainer.gameObject.SetActive(false);
+        }
+    }
+
+    void DestroyAnswers()
+    {
+        foreach (Transform answers in answersContainer)
+        {
+            GameObject.Destroy(answers.gameObject);
+        }
+    }
+
+    public void InstantiateNewAnswers(List<AnswerData> answerDatas)
     {
         foreach (Transform answers in answersContainer)
         {
@@ -118,13 +162,13 @@ public class DialogueManager : Singleton<DialogueManager>
             }
             else
             {
-                if (QuestManager.Instance.HasQuest(answerData.questNeededToDisplay) && QuestManager.Instance.CanQuestBeFinished(answerData.questNeededToDisplay))
+                if (QuestManager.Instance.HasQuest(answerData.questNeededToDisplay) 
+                    && QuestManager.Instance.CanQuestBeFinished(answerData.questNeededToDisplay))
                 {
                     Answer tempAnswer = Instantiate(answerPrefab, answersContainer);
                     tempAnswer.SetData(answerData);
                 }
             }
-
         }
     }
 }

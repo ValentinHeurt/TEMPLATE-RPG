@@ -858,8 +858,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3728376107475526133}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 18.102547, y: 18.102547, z: 18.102547}
   m_Children:
   - {fileID: 7059331070562371692}
@@ -1828,6 +1828,8 @@ GameObject:
   - component: {fileID: 3954704906006332602}
   - component: {fileID: 2363928053747122952}
   - component: {fileID: 413593521}
+  - component: {fileID: 1486697827}
+  - component: {fileID: 1452115369293300904}
   m_Layer: 0
   m_Name: Banana Man
   m_TagString: Untagged
@@ -2092,6 +2094,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 88eafef8-306a-4605-94a1-e71e97ccb747
     m_ActionName: Player/OpenEquipmentSheet[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7901606945795964731}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: TestInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f1a232fd-d08e-47ed-b2d9-b5d2cab33c1a
+    m_ActionName: Player/Test[/Keyboard/numpad5]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7901606945795964731}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OpenQuestWindow
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4b2849b3-12e1-4df2-9c64-4ffc5eb07989
+    m_ActionName: Player/OpenQuestWindow[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7901606945795964731}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnAbility1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 557fb08d-7542-44b1-916f-c53093e4bd78
+    m_ActionName: Player/Ability[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2109,6 +2159,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9ae638751fad948864ddff6f8d401f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CharacterStats:
+    stats:
+    - stat: {fileID: 11400000, guid: c861cb02c6410554ba4764bbd2ef93af, type: 2}
+      statAdditives: []
+      baseValue: 10
+    - stat: {fileID: 11400000, guid: 3ea409d95ceadf344a1206133be31b09, type: 2}
+      statAdditives: []
+      baseValue: 10
+    - stat: {fileID: 11400000, guid: 651f0e67424f7094cbd79711072c1ec9, type: 2}
+      statAdditives: []
+      baseValue: 10
+    - stat: {fileID: 11400000, guid: fe4e4eaecc1c41440b6802d6367d6b78, type: 2}
+      statAdditives: []
+      baseValue: 5
   translationSpeed: 8
   gravity: 20
   jumpSpeed: 10
@@ -2119,17 +2183,14 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   cameraBrain: {fileID: 0}
   weapon: {fileID: 0}
-  m_Abilities: []
+  ability: {fileID: 1486697827}
   interactableCheckRadius: 1.66
   interactableCheckOffset: {x: 0, y: 0.9, z: 0}
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
   turnSmoothTime: 0.1
-  atkFlat: 10
-  atkPercent: 5
-  critDmg: 5
-  critRate: 5
+  isWeaponEquipped: 0
 --- !u!114 &7901606945795964731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,6 +2205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Inventory: {fileID: 0}
   m_EquipmentSheet: {fileID: 0}
+  m_QuestWindow: {fileID: 0}
   playerControllerInputBlocked: 0
   mouseSensitivity: 0.5
 --- !u!114 &2799638598194497180
@@ -2158,7 +2220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9534377ac53c553459d3ee8c4ab4d235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 5
+  maxHitPoints: 100
   invulnerabiltyTime: 5
   hitAngle: 360
   hitForwardRotation: 360
@@ -2169,12 +2231,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
+        m_MethodName: SetHealth
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 2799638598194497180}
+          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2189,6 +2251,21 @@ MonoBehaviour:
   OnResetDamage:
     m_PersistentCalls:
       m_Calls: []
+  OnReceivedHeal:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
+        m_MethodName: SetHealth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2799638598194497180}
+          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDamageMessageReceivers: []
 --- !u!114 &3954704906006332602
 MonoBehaviour:
@@ -2278,6 +2355,42 @@ MonoBehaviour:
   gauntlets:
     item: {fileID: 0}
     quantity: 0
+--- !u!114 &1486697827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6834518082498404763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8427744b99ef25e45b976b078dbe5e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: BlackHole
+  icon: {fileID: 0}
+  cooldownTime: 2
+  blackHole: {fileID: 4529865613111859776, guid: 964903e11017130469c8da985b938c3c, type: 3}
+--- !u!114 &1452115369293300904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6834518082498404763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ec4d7f9c6c35b4aa59d01d6840734d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 
+  icon: {fileID: 0}
+  cooldownTime: 1
+  _kamui: {fileID: 0}
+  _playerGfx: {fileID: 0}
+  _speed: 0
+  _delay: 0
+  _targetMultiplier: 0
 --- !u!1 &7094686184085847340
 GameObject:
   m_ObjectHideFlags: 0

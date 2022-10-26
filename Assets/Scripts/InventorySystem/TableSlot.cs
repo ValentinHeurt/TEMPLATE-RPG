@@ -10,6 +10,7 @@ public class TableSlot : ItemSlotUI, IDropHandler
     private void OnEnable()
     {
         UpdateSlotUI();
+        EventManager.Instance.AddListener<OnAmeliorationTableItemUpdated>(OnItemChanged);
     }
 
     public override void OnDrop(PointerEventData eventData)
@@ -44,6 +45,12 @@ public class TableSlot : ItemSlotUI, IDropHandler
             SlotItem = null;
             UpdateSlotUI();
         }
+    }
+
+    public void OnItemChanged(OnAmeliorationTableItemUpdated eventData)
+    {
+        SlotItem = eventData.item;
+        itemNameText.text = eventData.item.ColoredName;
     }
 
     public override void UpdateSlotUI()

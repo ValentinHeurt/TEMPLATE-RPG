@@ -104,7 +104,7 @@ public class Inventory : MonoBehaviour, IItemContainer
         int count = 0;
         foreach (ItemSlot itemSlot in m_ItemSlots)
         {
-            if (itemSlot.item == null || itemSlot.item != item) { continue; }
+            if (itemSlot.item == null || itemSlot.item.ID != item.ID) { continue; }
             count += itemSlot.quantity;
         }
         return count;

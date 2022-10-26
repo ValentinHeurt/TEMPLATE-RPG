@@ -24,6 +24,7 @@ public class ToolTableUI : MonoBehaviour
         StringBuilder builder = GetStatsStringBuilder(item);
         itemStats.text = builder.ToString();
         UpdateButtonAmeliorationColor();
+        EventManager.Instance.QueueEvent(new OnAmeliorationTableItemUpdated(item));
     }
 
     private StringBuilder GetStatsStringBuilder(Item item)

@@ -24,4 +24,9 @@ public class ItemGoal : QuestGoal
         Evaluate();
     }
 
+    public override void CheckGoal()
+    {
+
+    }
+
 }

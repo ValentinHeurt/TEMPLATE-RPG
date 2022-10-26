@@ -155,7 +155,10 @@ public class PlayerInput : MonoBehaviour
     } 
     //FIN TEST
     public void OnJump(InputAction.CallbackContext ctx) => m_Jump = ctx.started;
-    public void OnAbility1(InputAction.CallbackContext ctx) => m_Ability1 = ctx.started;
+    public void OnAbility1(InputAction.CallbackContext ctx) {
+        m_Ability1 = ctx.started;
+        Debug.Log("m_ability1 : " + m_Ability1);
+    }
     public void OnAbility2(InputAction.CallbackContext ctx) => m_Ability2 = ctx.started;
     public void OnRun(InputAction.CallbackContext ctx) => m_Run = ctx.performed;
     public void OnWalk(InputAction.CallbackContext ctx) { if (ctx.started) m_Walk = !m_Walk; }
@@ -211,10 +214,12 @@ public class PlayerInput : MonoBehaviour
     }
     public void NextLineDialogue(InputAction.CallbackContext ctx)
     {
-        //if (GameManager.Instance.IsInDialogue && ctx.started && DialogueManager.Instance.timeSinceLastLine > 2f)
-        //{
-        //    DialogueManager.Instance.ContinueDialogue();
-        //}
+        if (GameManager.Instance.IsInDialogue && ctx.started
+            && DialogueManager.Instance.timeSinceLastLine > 2f
+            && (DialogueManager.Instance.dialogueLine.answers == null || DialogueManager.Instance.dialogueLine.answers.Count == 0))
+        {
+            DialogueManager.Instance.ContinueDialogueNoAnswers();
+        }
     }
     public void OpenCloseInventory()
     {

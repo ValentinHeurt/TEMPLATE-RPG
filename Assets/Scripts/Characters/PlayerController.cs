@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
     public CinemachineFreeLook mainCamera;
     public Transform cameraBrain;
     public MeleeWeapon weapon;
-    public AbilityBase[] m_Abilities;
+    [SerializeField] public AbilityBase ability;
     public float interactableCheckRadius = 1f;
     public Vector3 interactableCheckOffset;
     public LayerMask interactableLayer;
@@ -131,8 +131,6 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
 
         playerLevelSystem = new LevelSystem("playerLevel");
 
-        m_Abilities = GetComponents<AbilityBase>();
-
         s_Instance = this;
     }
 
@@ -203,6 +201,13 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
         {
             m_Animator.SetTrigger(m_HashNormalAttack);
         }
+
+        if (m_Input.Ability1)
+        {
+            Debug.Log("ability USED in controller");
+            ability.TriggerAbility();
+        }
+
         if (IsMoveInput)
         {
             if (m_Input.Run)
