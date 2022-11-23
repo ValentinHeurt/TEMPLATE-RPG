@@ -98,7 +98,6 @@ public class QuestCustomEditor : Editor
             DestroyImmediate(item, true);
 
             m_QuestGoalListProperty.DeleteArrayElementAtIndex(toDelete);
-            m_QuestGoalListProperty.DeleteArrayElementAtIndex(toDelete);
         }
 
         serializedObject.ApplyModifiedProperties();

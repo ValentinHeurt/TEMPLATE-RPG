@@ -9,18 +9,23 @@ public class Consumable : Item
     [Header("Consumable")]
     public List<Bonus> bonuses;
     public IntEvent onConsumableUsed;
-    public void ApplyBonuses()
+    public bool ApplyBonuses()
     {
         foreach (Bonus bonus in bonuses)
         {
-            bonus.HandleBonus();
+            bool temp = bonus.HandleBonus();
+            if (!temp) return false;
         }
+        return true;
     }
     
     public override void UseItem(ItemSlotUI itemSlotUI)
     {
-        ApplyBonuses();
-        EventManager.Instance.QueueEvent(new RemoveOneItemGameEvent(itemSlotUI.SlotIndex));
+        if (ApplyBonuses())
+        {
+            EventManager.Instance.QueueEvent(new RemoveOneItemGameEvent(itemSlotUI.SlotIndex));
+        }
+
     }
 
     public override string GetInfoDisplayedText()

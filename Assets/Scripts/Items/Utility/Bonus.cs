@@ -9,8 +9,8 @@ public class Bonus : ScriptableObject
     public Color color;
     public string valueString;
 
-    public virtual void HandleBonus()
+    public virtual bool HandleBonus()
     {
-
+        return true;
     }
 }

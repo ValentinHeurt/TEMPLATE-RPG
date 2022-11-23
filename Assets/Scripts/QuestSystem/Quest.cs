@@ -21,6 +21,7 @@ public class Quest : ScriptableObject
     {
         public int Currency;
         public int XP;
+        public List<ItemSlot> items;
     }
 
     [Header("Info")] public QuestStat reward = new QuestStat { Currency = 10, XP = 10 };
@@ -28,13 +29,12 @@ public class Quest : ScriptableObject
 
     public List<QuestGoal> Goals;
     public bool completed;
-    public QuestCompletedEvent OnQuestCompleted;
+    public QuestEvent OnQuestCompleted;
     public bool canComplete;
 
     public virtual void Initialize()
     {
         completed = false;
-        OnQuestCompleted = new QuestCompletedEvent();
 
         foreach (var goal in Goals)
         {
@@ -55,8 +55,7 @@ public class Quest : ScriptableObject
         {
             completed = true;
             // donner reward
-            OnQuestCompleted.Invoke(this);
-            OnQuestCompleted.RemoveAllListeners();
+            OnQuestCompleted.Raise(this);
             foreach (var goal in Goals)
             {
                 goal.OnGoalCompleted.RemoveAllListeners();
@@ -66,5 +65,3 @@ public class Quest : ScriptableObject
     }
 
 }
-
-public class QuestCompletedEvent : UnityEvent<Quest> { }

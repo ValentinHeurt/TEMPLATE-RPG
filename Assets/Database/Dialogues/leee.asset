@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8117009536288109565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428b25ea32ab76a41aebbf5a3358e825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextDialogueLine: {fileID: 0}
+  questToStart: {fileID: 11400000, guid: 3fe8e6be2f2cf004d9bdaee134872e0e, type: 2}
+  questNeededToDisplay: {fileID: 0}
+  itemToGive: {fileID: 0}
+  text: start
+  guid: fb08546493488a34ebcf339f35640b1c
+  position: {x: 224, y: -191}
+--- !u!114 &-3758583500223478049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8189d4b5b706e2e4ebc6c56506c2900f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answers: []
+  directNextLine: {fileID: 0}
+  line: 
+  guid: f77d0f5e40c41914fb219b52c35ebb10
+  position: {x: 0, y: 0}
+--- !u!114 &-2188446804596046658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428b25ea32ab76a41aebbf5a3358e825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextDialogueLine: {fileID: 0}
+  questToStart: {fileID: 0}
+  questNeededToDisplay: {fileID: 0}
+  itemToGive: {fileID: 0}
+  text: 
+  guid: 08734e6615b751b49aaac2e224cf33af
+  position: {x: 0, y: 0}
+--- !u!114 &-1727970891409096645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8189d4b5b706e2e4ebc6c56506c2900f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answers:
+  - {fileID: -8117009536288109565}
+  - {fileID: 2078420632990511754}
+  directNextLine: {fileID: 0}
+  line: bjr
+  guid: 8fc08d34016347149b94261b93eac2aa
+  position: {x: 0, y: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53690e2279960db4d88962e702ebcc11, type: 3}
+  m_Name: leee
+  m_EditorClassIdentifier: 
+  dialogueLine: {fileID: -1727970891409096645}
+--- !u!114 &2078420632990511754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428b25ea32ab76a41aebbf5a3358e825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextDialogueLine: {fileID: 0}
+  questToStart: {fileID: 0}
+  questNeededToDisplay: {fileID: 11400000, guid: 3fe8e6be2f2cf004d9bdaee134872e0e, type: 2}
+  itemToGive: {fileID: 0}
+  text: finish
+  guid: 08106231e70c8a34cacfd819382c1203
+  position: {x: 224, y: 63}
+--- !u!114 &6470787060536909357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8189d4b5b706e2e4ebc6c56506c2900f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answers: []
+  directNextLine: {fileID: 0}
+  line: 
+  guid: e0977e49d47bea44697e4c71bdbb2e72
+  position: {x: 386, y: -191}
+--- !u!114 &7457746419042770906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428b25ea32ab76a41aebbf5a3358e825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextDialogueLine: {fileID: 0}
+  questToStart: {fileID: 11400000, guid: 3fe8e6be2f2cf004d9bdaee134872e0e, type: 2}
+  questNeededToDisplay: {fileID: 0}
+  itemToGive: {fileID: 0}
+  text: quete
+  guid: 18b9ee1329471434ebc7b1fe7fc18ffe
+  position: {x: 302, y: -78}

@@ -12,29 +12,34 @@ public class Dialogue : ScriptableObject
 
     public DialogueLine CreateFirstDialogueLine()
     {
-        DialogueLine line = new DialogueLine();//ScriptableObject.CreateInstance("DialogueLine") as DialogueLine;
-        line.line = "PlaceHolder";
+        DialogueLine line = ScriptableObject.CreateInstance("DialogueLine") as DialogueLine;//new DialogueLine();//ScriptableObject.CreateInstance("DialogueLine") as DialogueLine;
+        line.line = "";
         line.guid = GUID.Generate().ToString();
         this.dialogueLine = line;
 
+        AssetDatabase.AddObjectToAsset(line, this);
+        AssetDatabase.SaveAssets();
         return line;
     }
 
     public DialogueLine CreateDialogueLine()
     {
-        DialogueLine line = new DialogueLine();//ScriptableObject.CreateInstance("DialogueLine") as DialogueLine;
-        line.line = "PlaceHolder";
+        DialogueLine line = ScriptableObject.CreateInstance("DialogueLine") as DialogueLine; //new DialogueLine();//ScriptableObject.CreateInstance("DialogueLine") as DialogueLine;
+        line.line = "";
         line.guid = GUID.Generate().ToString();
-
+        AssetDatabase.AddObjectToAsset(line, this);
+        AssetDatabase.SaveAssets();
         return line;
     }
 
 
     public AnswerData CreateAnswerData()
     {
-        AnswerData answer = new AnswerData();
-        answer.text = "PlaceHolder";
+        AnswerData answer = ScriptableObject.CreateInstance("AnswerData") as AnswerData;
+        answer.text = "";
         answer.guid = GUID.Generate().ToString();
+        AssetDatabase.AddObjectToAsset(answer, this);
+        AssetDatabase.SaveAssets();
         return answer;
     }
 

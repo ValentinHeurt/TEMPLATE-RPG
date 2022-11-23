@@ -88,7 +88,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         //}
 
-        if (eventInfo.answerData.nextDialogueLine.line == "")
+        if (eventInfo.answerData.nextDialogueLine == null || eventInfo.answerData.nextDialogueLine.line == "")
         {
             DestroyAnswers();
             dialoguePanel.SetActive(false);
@@ -115,7 +115,7 @@ public class DialogueManager : Singleton<DialogueManager>
         if (dialogueLine.answers == null || dialogueLine.answers.Count == 0)
         {
             timeSinceLastLine = 0;
-            if(dialogueLine.directNextLine == null || dialogueLine.directNextLine.Count == 0)
+            if(dialogueLine.directNextLine == null)
             {
                 DestroyAnswers();
                 dialoguePanel.SetActive(false);
@@ -125,7 +125,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 return;
             }
         }
-        dialogueLine = dialogueLine.directNextLine[0];
+        dialogueLine = dialogueLine.directNextLine;
         dialogueText.text = dialogueLine.line;
         if (dialogueLine.answers.Count > 0)
         {

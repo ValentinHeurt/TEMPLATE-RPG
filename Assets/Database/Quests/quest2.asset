@@ -19,9 +19,16 @@ MonoBehaviour:
   reward:
     Currency: 10
     XP: 1100000
+    items:
+    - item: {fileID: 11400000, guid: aec4122540a29544da089225ab142248, type: 2}
+      quantity: 2
+    - item: {fileID: 11400000, guid: 192abdbd777c1474aa56c332205ff59d, type: 2}
+      quantity: 10
   Goals:
   - {fileID: 6953378692493680562}
   completed: 0
+  OnQuestCompleted: {fileID: 0}
+  canComplete: 0
 --- !u!114 &6953378692493680562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,6 +45,7 @@ MonoBehaviour:
   goalName: Rapier
   requiredAmount: 1
   completed: 0
+  questCompleted: 0
   OnGoalCompleted:
     m_PersistentCalls:
       m_Calls: []

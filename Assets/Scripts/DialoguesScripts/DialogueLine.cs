@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-[Serializable]
-public class DialogueLine
+
+public class DialogueLine : ScriptableObject
 {
     public List<AnswerData> answers = new List<AnswerData>();
-    public List<DialogueLine> directNextLine = new List<DialogueLine>();
+    public DialogueLine directNextLine;
     public string line;
     public string guid;
 

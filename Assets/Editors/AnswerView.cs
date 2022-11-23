@@ -79,7 +79,7 @@ public class AnswerView : UnityEditor.Experimental.GraphView.Node
             value = this.answer.itemToGive
         };
 
-        itemToGive.RegisterValueChangedCallback(val => this.answer.itemToGive = val.newValue as Item);
+        itemToGive.RegisterValueChangedCallback(val => this.answer.itemToGive = val.newValue as Item );
         mainContainer.Add(itemToGive);
 
     }

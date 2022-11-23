@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
     // Events
     [HideInInspector] public static Action<Collider[]> OnDisplayedInteractableChanged;
     [HideInInspector] public static Action<int> OnDisplayedInteractableIndexChanged;
+    public ItemSlotEvent OnQuestRewardsGiven;
     protected bool IsMoveInput
     {
         get { return !Mathf.Approximately(m_Input.MoveInput.sqrMagnitude, 0f); }
@@ -312,6 +313,14 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
                 Debug.Log("Nothing");
             }
         }
+    }
+
+    public void GiveQuestRewards(Quest quest)
+    {
+        GainExperience(quest.reward.XP);
+        //Ajouter gestion des gols, j'ai po pour l'instant, flemme psk pas utile ^^
+        quest.reward.items.ForEach(itemSlot => OnQuestRewardsGiven.Raise(itemSlot));
+        
     }
 
     // This is called by an animation event

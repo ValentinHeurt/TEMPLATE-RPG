@@ -22,13 +22,13 @@ public class Inventory : MonoBehaviour, IItemContainer
     {
         m_ItemSlots = new ItemSlot[20];
     }
-    public ItemSlot AddItem(ItemSlot itemSlot)
+    public void AddItem(ItemSlot itemSlot)
     {
         for (int i = 0; i < m_ItemSlots.Length; i++)
         {
             if (m_ItemSlots[i].item != null)
             {
-                if (m_ItemSlots[i].item == itemSlot.item)
+                if (m_ItemSlots[i].item.ID == itemSlot.item.ID)
                 {
                     int slotRemainingSpace = m_ItemSlots[i].item.maxStack - m_ItemSlots[i].quantity;
                     if (itemSlot.quantity <= slotRemainingSpace)
@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour, IItemContainer
                         itemSlot.quantity = 0;
                         onInventoryItemsUpdated.Invoke();
                         EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
-                        return itemSlot;
+                        return;
                     }
                     else if (slotRemainingSpace > 0)
                     {
@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour, IItemContainer
                     EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
                     itemSlot.quantity = 0;
                     onInventoryItemsUpdated.Invoke();
-                    return itemSlot;
+                    return;
                 }
                 else
                 {
@@ -70,7 +70,7 @@ public class Inventory : MonoBehaviour, IItemContainer
         }
         onInventoryItemsUpdated.Invoke();
 
-        return itemSlot;
+        return;
 
     }
 

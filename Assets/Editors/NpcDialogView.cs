@@ -29,13 +29,13 @@ public class NpcDialogView : GraphView
         this.dialogue = dialogue;
 
         graphViewChanged -= OnGraphViewChanged;
-        DeleteElements(graphElements);
+        DeleteElements(graphElements.ToList());
         graphViewChanged += OnGraphViewChanged;
         if (dialogue.dialogueLine != null)
         {
             DialogueLineView d = CreateLineView(dialogue.dialogueLine);
             if (dialogue.dialogueLine.answers != null) CreateRecursiveAnswersViews(dialogue.dialogueLine.answers, d);
-            if (dialogue.dialogueLine.directNextLine.Count >= 1) CreateRecursiveLineViewsFromLine(dialogue.dialogueLine.directNextLine[0], d);
+            if (dialogue.dialogueLine.directNextLine != null) CreateRecursiveLineViewsFromLine(dialogue.dialogueLine.directNextLine, d);
         }
 
     }
@@ -46,12 +46,15 @@ public class NpcDialogView : GraphView
             AnswerView a = CreateAnswerView(answer);
             Edge edge = parent.output.ConnectTo(a.input);
             AddElement(edge);
-
-            if (answer.nextDialogueLine.answers.Count != 0 || answer.nextDialogueLine.directNextLine.Count != 0 
-                || (answer.nextDialogueLine.line != "" && answer.nextDialogueLine.line != "PlaceHolder" && answer.nextDialogueLine.line != null))
+            if (answer.nextDialogueLine != null)
             {
-                CreateRecursiveLineViews(answer.nextDialogueLine, a);
+                if (answer.nextDialogueLine.answers.Count != 0 || answer.nextDialogueLine.directNextLine != null
+                    || (answer.nextDialogueLine.line != null))
+                {
+                    CreateRecursiveLineViews(answer.nextDialogueLine, a);
+                }
             }
+
         });
     }
     void CreateRecursiveLineViews(DialogueLine line, AnswerView parent)
@@ -60,6 +63,7 @@ public class NpcDialogView : GraphView
         Edge edge = parent.outputLine.ConnectTo(d.input);
         AddElement(edge);
         if (line.answers != null) CreateRecursiveAnswersViews(line.answers, d);
+        if (line.directNextLine != null) CreateRecursiveLineViewsFromLine(line.directNextLine, d);
     }
 
     void CreateRecursiveLineViewsFromLine(DialogueLine line, DialogueLineView lineParent)
@@ -68,7 +72,7 @@ public class NpcDialogView : GraphView
         Edge edge = lineParent.outputDirectLine.ConnectTo(d.input);
         AddElement(edge);
         if (line.answers != null) CreateRecursiveAnswersViews(line.answers, d);
-        if (line.directNextLine.Count >= 1) CreateRecursiveLineViewsFromLine(line.directNextLine[0], d);
+        if (line.directNextLine != null) CreateRecursiveLineViewsFromLine(line.directNextLine, d);
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
@@ -119,8 +123,10 @@ public class NpcDialogView : GraphView
                 {
                     if (edge.input.node as DialogueLineView != null)
                     {
-                        if ((edge.output.node as DialogueLineView).line.directNextLine.Count >= 1) (edge.output.node as DialogueLineView).line.directNextLine = new List<DialogueLine>();
-                        (edge.output.node as DialogueLineView).line.directNextLine.Add((edge.input.node as DialogueLineView).line);
+                        if ((edge.input.node as DialogueLineView).line.directNextLine == null)
+                        {
+                            (edge.output.node as DialogueLineView).line.directNextLine = (edge.input.node as DialogueLineView).line;
+                        }
                     }
                 }
 
@@ -152,6 +158,7 @@ public class NpcDialogView : GraphView
         AnswerView answerView = new AnswerView(answer);
         AddElement(answerView);
         return answerView;
+
     }
 
     void CreateLine()

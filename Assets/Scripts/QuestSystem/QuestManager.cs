@@ -26,7 +26,6 @@ public class QuestManager : Singleton<QuestManager>
         if (!currentQuests.Contains(quest))
         {
             quest.Initialize();
-            quest.OnQuestCompleted.AddListener(HandleReward);
             currentQuests.Add(quest);
         }
     }
@@ -57,11 +56,6 @@ public class QuestManager : Singleton<QuestManager>
     public void TryFinishQuest(Quest quest)
     {
         quest.FinishQuest();
-    }
-
-    public void HandleReward(Quest quest)
-    {
-        PlayerController.Instance.GainExperience(quest.reward.XP);
     }
 
 }
