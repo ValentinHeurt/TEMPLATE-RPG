@@ -54,7 +54,8 @@ public class Inventory : MonoBehaviour, IItemContainer
             {
                 if (itemSlot.quantity <= itemSlot.item.maxStack)
                 {
-                    m_ItemSlots[i] = itemSlot;
+                    Item tempItem = Instantiate(itemSlot.item);
+                    m_ItemSlots[i] = new ItemSlot(tempItem, itemSlot.quantity);
                     EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
                     itemSlot.quantity = 0;
                     onInventoryItemsUpdated.Invoke();
@@ -62,7 +63,8 @@ public class Inventory : MonoBehaviour, IItemContainer
                 }
                 else
                 {
-                    m_ItemSlots[i] = new ItemSlot(itemSlot.item, itemSlot.item.maxStack);
+                    Item tempItem = Instantiate(itemSlot.item);
+                    m_ItemSlots[i] = new ItemSlot(tempItem, itemSlot.item.maxStack);
                     EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
                     itemSlot.quantity -= itemSlot.item.maxStack;
                 }
@@ -72,6 +74,11 @@ public class Inventory : MonoBehaviour, IItemContainer
 
         return;
 
+    }
+
+    public void UpdateForQuest()
+    {
+        EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
     }
 
     public int GetTotalQuantity(Item item)
@@ -197,7 +204,8 @@ public class Inventory : MonoBehaviour, IItemContainer
     {
         if (m_ItemSlots[index].item == null)
         {
-            m_ItemSlots[index] = itemSlot;
+            Item tempItem = Instantiate(itemSlot.item);
+            m_ItemSlots[index] = new ItemSlot(tempItem, itemSlot.quantity);
             onInventoryItemsUpdated.Invoke();
             EventManager.Instance.QueueEvent(new OnInventoryUpdate(this));
             return true;

@@ -72,8 +72,8 @@ public class QuestWindow : MonoBehaviour
             GoalUIHandler tempGoal = Instantiate(goalPrefab, goals);
             tempGoal.FillInformations(goal.goalName, goal.CurrentAmount.ToString(), goal.requiredAmount.ToString(), goal.completed);
         }
-        currentQuestXpReward.text = $"+{currentQuest.reward.XP} xp";
-        currentQuest.reward.items.ForEach(itemSlot =>
+        currentQuestXpReward.text = $"+{currentQuest.rewards.XP} xp";
+        currentQuest.rewards.items.ForEach(itemSlot =>
         {
             GameObject itemSlotGO = Instantiate(rewardsItemPrefab, rewardsItemHolder);
             itemSlotGO.GetComponent<QuestItemSlot>().Itemslot = itemSlot;

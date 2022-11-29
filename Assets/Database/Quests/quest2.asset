@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7880930319717785348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f17aef7a3c5dd4b92535871db4d2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: Une rapier stp
+  goalName: c la rapier
+  requiredAmount: 1
+  completed: 1
+  questCompleted: 1
+  OnGoalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  item: {fileID: 11400000, guid: 428f559a637f9364fbd556d3771f29e3, type: 2}
+  askForInventoryUpdate: {fileID: 11400000, guid: 3134aefe95242174eb664d6292ecd847, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,40 +35,19 @@ MonoBehaviour:
   m_Name: quest2
   m_EditorClassIdentifier: 
   Information:
-    Name: quest2
+    Name: quete de merde
     Icon: {fileID: 0}
-    Description: une autre quest
-  reward:
-    Currency: 10
-    XP: 1100000
+    Description: c dla merde
+  rewards:
+    Currency: 0
+    XP: 50000000
     items:
-    - item: {fileID: 11400000, guid: aec4122540a29544da089225ab142248, type: 2}
-      quantity: 2
+    - item: {fileID: 11400000, guid: b3126d301ed481b49a2fdfa1e50776b2, type: 2}
+      quantity: 1
     - item: {fileID: 11400000, guid: 192abdbd777c1474aa56c332205ff59d, type: 2}
-      quantity: 10
+      quantity: 15
   Goals:
-  - {fileID: 6953378692493680562}
-  completed: 0
-  OnQuestCompleted: {fileID: 0}
-  canComplete: 0
---- !u!114 &6953378692493680562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f17aef7a3c5dd4b92535871db4d2c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Description: recup une rapier frero
-  goalName: Rapier
-  requiredAmount: 1
-  completed: 0
-  questCompleted: 0
-  OnGoalCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  item: {fileID: 11400000, guid: 428f559a637f9364fbd556d3771f29e3, type: 2}
+  - {fileID: -7880930319717785348}
+  completed: 1
+  OnQuestCompleted: {fileID: 11400000, guid: 1246d80db56aa3647bc31aa6748dac33, type: 2}
+  canComplete: 1

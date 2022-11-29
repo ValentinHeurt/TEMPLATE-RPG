@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-
+[CreateAssetMenu(fileName = "New Quest", menuName = "Assets/Quest")]
 public class Quest : ScriptableObject
 {
 
@@ -24,24 +24,25 @@ public class Quest : ScriptableObject
         public List<ItemSlot> items;
     }
 
-    [Header("Info")] public QuestStat reward = new QuestStat { Currency = 10, XP = 10 };
-
-
+    [Header("Info")] public QuestStat rewards = new QuestStat { Currency = 10, XP = 10 };
+    
     public List<QuestGoal> Goals;
     public bool completed;
+
+    [Header("Completed Event")]
     public QuestEvent OnQuestCompleted;
     public bool canComplete;
 
     public virtual void Initialize()
     {
         completed = false;
-
+        canComplete = false;
         foreach (var goal in Goals)
         {
             goal.Initialize();
             goal.OnGoalCompleted.AddListener(delegate { CheckGoals(); });
         }
-
+        HandleItems();
     }
 
     public void CheckGoals()
@@ -62,6 +63,14 @@ public class Quest : ScriptableObject
                 goal.questCompleted = true;
             }
         }
+    }
+
+    private void HandleItems()
+    {
+        rewards.items.ForEach(item =>
+        {
+            item = new ItemSlot(Instantiate(item.item),item.quantity);
+        });
     }
 
 }

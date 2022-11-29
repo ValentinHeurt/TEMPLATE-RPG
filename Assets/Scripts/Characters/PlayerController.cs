@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
     public float gravity = 20f;
     public float jumpSpeed = 10f;
     public float idleTimeout = 5f;
-    public float minTurnSpeed = 400f;         // How fast Ellen turns when moving at maximum speed.
-    public float maxTurnSpeed = 1200f;        // How fast Ellen turns when stationary.
+    public float minTurnSpeed = 400f;        
+    public float maxTurnSpeed = 1200f;       
     public bool canAttack;
     public CinemachineFreeLook mainCamera;
     public Transform cameraBrain;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
     public LayerMask interactableLayer;
     // Ajouter la gestion du son (RandomAudioPlayer)
 
+    #region animation related
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
 
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
     const float k_StickingGravityProportion = 0.3f;
     const float k_GroundAcceleration = 20f;
     const float k_GroundDeceleration = 25f;
+    #endregion
 
     public bool isWeaponEquipped = false;
     
@@ -317,9 +319,9 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
 
     public void GiveQuestRewards(Quest quest)
     {
-        GainExperience(quest.reward.XP);
+        GainExperience(quest.rewards.XP);
         //Ajouter gestion des gols, j'ai po pour l'instant, flemme psk pas utile ^^
-        quest.reward.items.ForEach(itemSlot => OnQuestRewardsGiven.Raise(itemSlot));
+        quest.rewards.items.ForEach(itemSlot => OnQuestRewardsGiven.Raise(itemSlot));
         
     }
 

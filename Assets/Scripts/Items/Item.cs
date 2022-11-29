@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-[CreateAssetMenu(fileName = "New Item", menuName = "Assets/Item/Item")]
 public abstract class Item : ScriptableObject
 {
     [Header("Item Fields")]
@@ -30,5 +29,6 @@ public enum ItemType
 {
     WEAPON,
     EQUIPMENT,
-    CONSUMABLE
+    CONSUMABLE,
+    DIVERS
 }

@@ -25,6 +25,5 @@ MonoBehaviour:
     baseValue: 10
   equipmentPart: 0
   ameliorationPercent: 10
-  maxAmeliorationState: 10
   ameliorationState: 0
   weaponPrefab: {fileID: 1389273699563893268, guid: 442a99096053f63449150b2799e5e7d7, type: 3}

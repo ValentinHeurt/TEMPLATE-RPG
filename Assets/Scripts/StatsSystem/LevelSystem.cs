@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class LevelSystem
 {
     public string levelSystemId;
+    public int levelMax = 100;
     public float currentXp;
     public int currentLevel = 1;
     public float requiredXp;
@@ -25,6 +26,8 @@ public class LevelSystem
     }
     public void GainExperience(float xp) {
         Debug.Log("levelSystem");
+        if (currentLevel >= levelMax)
+            return;
         // Si requiredXp n'a pas encore été calculé, on le fait
         if (requiredXp == 0)
             requiredXp = CalculateRequiredXp();

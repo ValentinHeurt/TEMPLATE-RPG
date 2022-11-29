@@ -16,12 +16,15 @@ MonoBehaviour:
     Name: get_item_dev1
     Icon: {fileID: 0}
     Description: "C'est une qu\xEAtre o\xF9 tu dois parler \xE0 un pnj"
-  reward:
+  rewards:
     Currency: 10
     XP: 10
+    items: []
   Goals:
   - {fileID: 3554465080222679281}
   completed: 0
+  OnQuestCompleted: {fileID: 11400000, guid: 1246d80db56aa3647bc31aa6748dac33, type: 2}
+  canComplete: 0
 --- !u!114 &3554465080222679281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,7 +41,9 @@ MonoBehaviour:
   goalName: get_katana
   requiredAmount: 1
   completed: 0
+  questCompleted: 0
   OnGoalCompleted:
     m_PersistentCalls:
       m_Calls: []
   item: {fileID: 11400000, guid: b3126d301ed481b49a2fdfa1e50776b2, type: 2}
+  askForInventoryUpdate: {fileID: 11400000, guid: 3134aefe95242174eb664d6292ecd847, type: 2}
