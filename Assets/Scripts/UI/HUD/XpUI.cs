@@ -31,7 +31,6 @@ public class XpUI : MonoBehaviour
         {
             Debug.Log("xpUI entré dans playerLevel");
             currentXp = xp;
-            currentLevel = level;
             currentRequiredXp = requiredXp;
             textLevel.text = level.ToString();
             xpBar.fillAmount = currentXp / currentRequiredXp;

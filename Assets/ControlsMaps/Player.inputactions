@@ -11,7 +11,8 @@
                     "id": "0e25e03f-39e0-41a2-a983-587a529403cf",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Look",
@@ -19,7 +20,8 @@
                     "id": "c47fae31-f3ba-4638-9ec7-80e4867fae87",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Attack",
@@ -27,7 +29,8 @@
                     "id": "4be9fdde-9de1-4301-85c5-daa936b4cde0",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -35,7 +38,8 @@
                     "id": "44863112-ce61-4ed8-b389-a9e0231eaf4b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "EquipWeapon",
@@ -43,7 +47,8 @@
                     "id": "c7e2ef36-f09e-4e22-b18d-7eadde4e2e34",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Run",
@@ -51,7 +56,8 @@
                     "id": "bdebf092-bbe3-48cc-a697-499e064d46b2",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Walk",
@@ -59,7 +65,8 @@
                     "id": "715b2713-1313-4922-9333-655e102e1c33",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Interact",
@@ -67,7 +74,8 @@
                     "id": "ca4a97d5-7905-4e08-8db5-e4c6f20a3582",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ContinueDialogue",
@@ -75,7 +83,8 @@
                     "id": "cfd83cbe-a35e-404d-bf30-ed7a7c708a2e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "OpenInventory",
@@ -83,7 +92,8 @@
                     "id": "038dd8ee-8887-4e91-9cb6-0f370dd9d0d4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "OpenEquipmentSheet",
@@ -91,7 +101,8 @@
                     "id": "88eafef8-306a-4605-94a1-e71e97ccb747",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Test",
@@ -99,7 +110,8 @@
                     "id": "f1a232fd-d08e-47ed-b2d9-b5d2cab33c1a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "OpenQuestWindow",
@@ -107,7 +119,8 @@
                     "id": "4b2849b3-12e1-4df2-9c64-4ffc5eb07989",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Ability",
@@ -115,7 +128,17 @@
                     "id": "557fb08d-7542-44b1-916f-c53093e4bd78",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenMetierWindow",
+                    "type": "Button",
+                    "id": "0bf93e4b-da52-4906-9f43-7bf89fa9abcd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -325,6 +348,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52e39608-cd67-415b-855e-e62ff7954471",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenMetierWindow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

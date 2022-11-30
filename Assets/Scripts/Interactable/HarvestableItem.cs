@@ -10,10 +10,7 @@ public class HarvestableItem : Interactable
 {
     public Item templateItem;
     [HideInInspector] public Item itemToGive;
-    private bool _isCurrentlyHarvestable;
-    public int minLvlToHarvest;
-    public int xpToGive;
-    public float harvestTime;
+    private bool _isCurrentlyHarvestable = true;
     public Metier metierRequired;
     public int minAmountToGive;
     public int maxAmountToGive;
@@ -38,8 +35,10 @@ public class HarvestableItem : Interactable
         if (interacted.GetComponent<Metiers>() != null)
         {
             Metiers metiers = interacted.GetComponent<Metiers>();
-            if (metiers.CheckLevel(metierRequired.ID, minLvlToHarvest))
+            if (metiers.CheckLevel(metierRequired.ID, metierRequired.harvestableData.First(m => m.item.ID == templateItem.ID).minLvlToHarvest)
+                && _isCurrentlyHarvestable)
             {
+                _isCurrentlyHarvestable = false;
                 StartCoroutine(StartHarvest(interacted, metiers));
             }
         }
@@ -49,14 +48,15 @@ public class HarvestableItem : Interactable
     {
         Animator animator = interacted.GetComponent<Animator>();
         animator.SetBool(metierRequired.animationBool, true);
-        yield return new WaitForSeconds(harvestTime);
+        yield return new WaitForSeconds(metierRequired.harvestTime);
         animator.SetBool(metierRequired.animationBool, false);
-        metiers.GiveXp(metierRequired.ID, xpToGive);
+        metiers.GiveXp(metierRequired.ID, metierRequired.harvestableData.First(m => m.item.ID == templateItem.ID).xpToGive);
         FinishHarvest();
     }
 
     public void FinishHarvest()
     {
+        _isCurrentlyHarvestable = true;
         onHarvestFinished.Raise(new ItemSlot(itemToGive, UnityEngine.Random.Range(minAmountToGive,maxAmountToGive)));
     }
 

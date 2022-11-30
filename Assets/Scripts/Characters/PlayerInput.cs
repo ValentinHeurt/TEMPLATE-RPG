@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] GameObject m_Inventory;
     [SerializeField] GameObject m_EquipmentSheet;
     [SerializeField] GameObject m_QuestWindow;
+    [SerializeField] GameObject m_MetierWindow;
     public static PlayerInput Instance
     {
         get { return s_Instance; }
@@ -212,6 +213,15 @@ public class PlayerInput : MonoBehaviour
             OpenCloseQuestWindow();
         }
     }
+
+    public void OpenMetierWindow(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && (GameManager.Instance.IsPlaying || GameManager.Instance.IsInInventory))
+        {
+            OpenCloseMetierWindow();
+        }
+    }
+
     public void NextLineDialogue(InputAction.CallbackContext ctx)
     {
         if (GameManager.Instance.IsInDialogue && ctx.started
@@ -239,6 +249,15 @@ public class PlayerInput : MonoBehaviour
         else
             GameManager.Instance.Inventory();
         m_QuestWindow.SetActive(!m_QuestWindow.activeSelf);
+    }
+    public void OpenCloseMetierWindow()
+    {
+        GameManager.Instance.CursorLocker += m_MetierWindow.activeSelf ? -1 : 1;
+        if (GameManager.Instance.CursorLocker == 0)
+            GameManager.Instance.Play();
+        else
+            GameManager.Instance.Inventory();
+        m_MetierWindow.SetActive(!m_MetierWindow.activeSelf);
     }
 
     public void OpenCloseEquipmentSheet()

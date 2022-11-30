@@ -53,6 +53,16 @@ public class OnQuestSelected : GameEvent
         this.quest = quest;
     }
 }
+
+public class OnMetierSelected : GameEvent
+{
+    public Metier metier;
+    public OnMetierSelected(Metier metier)
+    {
+        this.metier = metier;
+    }
+}
+
 public class OnAnswerChosen : GameEvent
 {
     public AnswerData answerData;

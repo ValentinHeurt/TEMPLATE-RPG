@@ -9,10 +9,19 @@ public class Metier : ScriptableObject
     public string Name;
     public string Description;
     public string animationBool;
+    public Sprite icon;
+    public float harvestTime;
     public LevelSystem levelSystem;
-
+    public List<HarvestableData> harvestableData;
     
 
 
 
+}
+[System.Serializable]
+public class HarvestableData
+{
+    public BaseItem item;
+    public int xpToGive;
+    public int minLvlToHarvest;
 }
