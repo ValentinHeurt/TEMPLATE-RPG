@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99952ed018167e84e90f00fb8e670cc1, type: 3}
+  m_Name: Mineur
+  m_EditorClassIdentifier: 
+  ID: MINEUR
+  Name: Mineur
+  Description: Faut casser de la pierre
+  animationBool: WoodChopping
+  icon: {fileID: 21300000, guid: 58d099c4da3c5024e9fe404ac7243bb4, type: 3}
+  harvestTime: 5
+  levelSystem:
+    levelSystemId: 
+    levelMax: 0
+    currentXp: 0
+    currentLevel: 0
+    requiredXp: 0
+    totalXp: 0
+    additionMultiplier: 0
+    powerMultiplier: 0
+    divisionMultiplier: 0
+  harvestableData:
+  - item: {fileID: 11400000, guid: af924c847563c0842a0ca4abfe1f29a2, type: 2}
+    xpToGive: 70
+    minLvlToHarvest: 1
+  - item: {fileID: 11400000, guid: 843a92f411fe198458d8d6d95e20307d, type: 2}
+    xpToGive: 200
+    minLvlToHarvest: 2
+  - item: {fileID: 11400000, guid: 026355932fb4c2e43b98a490c91921bf, type: 2}
+    xpToGive: 1000
+    minLvlToHarvest: 3

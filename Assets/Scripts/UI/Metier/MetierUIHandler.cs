@@ -9,7 +9,7 @@ public class MetierUIHandler : MonoBehaviour, IPointerClickHandler
 {
     public TextMeshProUGUI metierNameText;
     public Image metierIcon;
-    private Metier _metier;
+    public Metier _metier;
 
     //XP BAR
     public float currentXp;

@@ -224,5 +224,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questNameText: {fileID: 2390766790557872114}
-  questDescriptionText: {fileID: 0}
   quest: {fileID: 0}

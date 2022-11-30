@@ -15,6 +15,7 @@ public class MetierWindow : MonoBehaviour
     public Metier currentMetier;
     private void OnEnable()
     {
+        EventManager.Instance.AddListener<OnMetierSelected>(SetDisplayedMetier);
         foreach (Transform metier in metiersContainer)
         {
             GameObject.Destroy(metier.gameObject);
@@ -35,14 +36,13 @@ public class MetierWindow : MonoBehaviour
             EventManager.Instance.QueueEvent(new OnMetierSelected(currentMetier));
         else
             EventManager.Instance.QueueEvent(new OnMetierSelected(metiers[0]));
-
-
     }
 
-    private void Awake()
+    private void OnDisable()
     {
-        EventManager.Instance.AddListener<OnMetierSelected>(SetDisplayedMetier);
+        EventManager.Instance.RemoveListener<OnMetierSelected>(SetDisplayedMetier);
     }
+
 
     public void SetDisplayedMetier(OnMetierSelected eventInfo)
     {
