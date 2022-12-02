@@ -189,7 +189,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23850
+  m_Name: pb_Mesh23834
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -660,6 +660,18 @@ PrefabInstance:
       propertyPath: OnQuestRewardsGiven
       value: 
       objectReference: {fileID: 11400000, guid: 70db6482c7f554e4c8ea569b1f58bc32, type: 2}
+    - target: {fileID: 1261173847887670964, guid: a43675107d4536148af5085e5d458616, type: 3}
+      propertyPath: m_CharacterStats.stats.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261173847887670964, guid: a43675107d4536148af5085e5d458616, type: 3}
+      propertyPath: m_CharacterStats.stats.Array.data[4].stat
+      value: 
+      objectReference: {fileID: 11400000, guid: e42725074be21ee4480b3db974897fa7, type: 2}
+    - target: {fileID: 1261173847887670964, guid: a43675107d4536148af5085e5d458616, type: 3}
+      propertyPath: m_CharacterStats.stats.Array.data[4].baseValue
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1452115369293300904, guid: a43675107d4536148af5085e5d458616, type: 3}
       propertyPath: _delay
       value: 1
@@ -2696,7 +2708,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23668
+  m_Name: pb_Mesh23650
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -9,4 +9,4 @@ public class Stat : ScriptableObject
     public string StatDescription;
 }
 
-public enum StatType { AtkFlat, AtkPercent, CritRate, CritDmg }
+public enum StatType { AtkFlat, AtkPercent, CritRate, CritDmg, HpFlat }

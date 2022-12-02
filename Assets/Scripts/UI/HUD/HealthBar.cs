@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
-    private float health;
+    public int health;
     private float lerpTimer;
     private float frontHealthBarfill;
     private float backHealthBarfill;
-    public float maxHealth = 100;
+    public int maxHealth = 100;
     public Image frontHealthBar;
     public Image backHealthBar;
     public Damageable representedDamageable;
@@ -24,11 +24,37 @@ public class HealthBar : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
         UpdateHealthUI();
     }
+
+    private void Awake()
+    {
+        // Listeners
+        EventManager.Instance.AddListener<OnStatsUpdated>(HealthStatsUpdate);
+
+    }
+    public void HealthStatsUpdate(OnStatsUpdated eventData)
+    {
+        if (eventData.cible == representedDamageable.gameObject)
+        {
+            int newMaxHp = (int)eventData.characterStats.GetStat(StatType.HpFlat).GetCalculatedStatValue();
+            int dif = newMaxHp - maxHealth;
+            if (health / maxHealth == 1f)
+            {
+                maxHealth = newMaxHp;
+                health = newMaxHp;
+            }
+            else
+            {
+                maxHealth = newMaxHp;
+                health += dif;
+            }
+        }
+    }
+
     public void UpdateHealthUI()
     {
         frontHealthBarfill = frontHealthBar.fillAmount;
         backHealthBarfill = backHealthBar.fillAmount;
-        float hFraction = health / maxHealth;
+        float hFraction = (float)health / (float)maxHealth;
         frontHealthBar.fillAmount = hFraction;
         if (backHealthBarfill >= frontHealthBarfill)
         {

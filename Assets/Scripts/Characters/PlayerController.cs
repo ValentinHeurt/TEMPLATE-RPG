@@ -135,6 +135,8 @@ public class PlayerController : MonoBehaviour, IMessageReceiver
         playerLevelSystem = new LevelSystem("playerLevel");
 
         s_Instance = this;
+
+        EventManager.Instance.QueueEvent(new OnStatsUpdated(m_CharacterStats, gameObject));
     }
 
     private void OnEnable()

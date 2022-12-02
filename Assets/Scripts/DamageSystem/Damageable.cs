@@ -37,7 +37,7 @@ public partial class Damageable : MonoBehaviour
     {
         // Listeners
         EventManager.Instance.AddListener<HealGameEvent>(ApplyHeal);
-
+        EventManager.Instance.AddListener<OnStatsUpdated>(HealthStatsUpdate);
 
     }
 
@@ -125,6 +125,25 @@ public partial class Damageable : MonoBehaviour
             receiver.OnReceiveMessage(messageType, this, data);
         }
 
+    }
+
+    public void HealthStatsUpdate(OnStatsUpdated eventData)
+    {
+        if (eventData.cible == gameObject)
+        {
+            int newMaxHp = (int)eventData.characterStats.GetStat(StatType.HpFlat).GetCalculatedStatValue();
+            int dif = newMaxHp - maxHitPoints;
+            if (currentHitPoints / maxHitPoints == 1)
+            {
+                maxHitPoints = newMaxHp;
+                currentHitPoints = newMaxHp;
+            }
+            else
+            {
+                maxHitPoints = newMaxHp;
+                currentHitPoints += dif;
+            }
+        }
     }
 
     void LateUpdate()

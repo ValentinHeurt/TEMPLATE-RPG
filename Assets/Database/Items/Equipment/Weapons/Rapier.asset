@@ -23,8 +23,10 @@ MonoBehaviour:
   - stat: {fileID: 11400000, guid: c861cb02c6410554ba4764bbd2ef93af, type: 2}
     statAdditives: []
     baseValue: 30
+  - stat: {fileID: 11400000, guid: e42725074be21ee4480b3db974897fa7, type: 2}
+    statAdditives: []
+    baseValue: 50
   equipmentPart: 0
   ameliorationPercent: 10
-  maxAmeliorationState: 12
   ameliorationState: 0
   weaponPrefab: {fileID: 1389273699563893268, guid: 780f639c63bf448479ea1d74183f022e, type: 3}

@@ -62,6 +62,16 @@ public class OnMetierSelected : GameEvent
         this.metier = metier;
     }
 }
+public class OnStatsUpdated : GameEvent
+{
+    public CharacterStats characterStats;
+    public GameObject cible;
+    public OnStatsUpdated(CharacterStats characterStats, GameObject cible)
+    {
+        this.characterStats = characterStats;
+        this.cible = cible;
+    }
+}
 
 public class OnAnswerChosen : GameEvent
 {

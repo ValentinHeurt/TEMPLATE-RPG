@@ -14,6 +14,7 @@ public class PlayerEquipmentController : MonoBehaviour
     public Equipment equippedGauntlets;
     public Equipment equippedBoots;
 
+
     private void Awake()
     {
         equipmentList.Add(EquipmentPart.Helmet, equippedHelmet);
@@ -55,6 +56,7 @@ public class PlayerEquipmentController : MonoBehaviour
             EquippedWeapon.GetComponent<IWeapon>().Stats = equipment.stats;
             PlayerController.Instance.m_CharacterStats.AddStatBonus(EquippedWeapon.GetComponent<IWeapon>().Stats);
             PlayerController.Instance.weapon = (MeleeWeapon)EquippedWeapon.GetComponent<IWeapon>(); // Fix fonctionne car qu'un type d'arme pour l'insant
+            EventManager.Instance.QueueEvent(new OnStatsUpdated(PlayerController.Instance.m_CharacterStats, gameObject));
         }
         else
         {
@@ -77,6 +79,7 @@ public class PlayerEquipmentController : MonoBehaviour
             Destroy(playerHand.transform.GetChild(0).gameObject);
             EquippedWeapon = null;
             PlayerController.Instance.isWeaponEquipped = false;
+            EventManager.Instance.QueueEvent(new OnStatsUpdated(PlayerController.Instance.m_CharacterStats, gameObject));
         }
         else
         {
