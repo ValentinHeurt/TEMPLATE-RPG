@@ -4,13 +4,11 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-#if UNITY_EDITOR
 [CustomEditor(typeof(Quest))]
 public class QuestCustomEditor : Editor
 {
     SerializedProperty m_QuestInfoProperty;
     SerializedProperty m_QuestStatProperty;
-    SerializedProperty m_QuestCompletedEvent;
 
     List<string> m_QuestGoalType;
     SerializedProperty m_QuestGoalListProperty;
@@ -26,7 +24,6 @@ public class QuestCustomEditor : Editor
     {
         m_QuestInfoProperty = serializedObject.FindProperty(nameof(Quest.Information));
         m_QuestStatProperty = serializedObject.FindProperty(nameof(Quest.rewards));
-        m_QuestCompletedEvent = serializedObject.FindProperty(nameof(Quest.OnQuestCompleted));
         m_QuestGoalListProperty = serializedObject.FindProperty(nameof(Quest.Goals));
 
         var lookup = typeof(QuestGoal);
@@ -59,7 +56,6 @@ public class QuestCustomEditor : Editor
             EditorGUILayout.PropertyField(child, true);
             child.NextVisible(false);
         }
-        EditorGUILayout.PropertyField(m_QuestCompletedEvent, true);
         
 
         int choice = EditorGUILayout.Popup("Add new Quest Goal", -1, m_QuestGoalType.ToArray());
@@ -106,5 +102,3 @@ public class QuestCustomEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
-
-#endif

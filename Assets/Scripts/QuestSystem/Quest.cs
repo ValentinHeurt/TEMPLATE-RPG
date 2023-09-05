@@ -20,17 +20,16 @@ public class Quest : ScriptableObject
     public struct QuestStat
     {
         public int Currency;
-        public int XP;
+        public float XP;
         public List<ItemSlot> items;
     }
 
-    [Header("Info")] public QuestStat rewards = new QuestStat { Currency = 10, XP = 10 };
+    [Header("Info")] public QuestStat rewards = new QuestStat { Currency = 10, XP = 10f };
     
     public List<QuestGoal> Goals;
     public bool completed;
 
-    [Header("Completed Event")]
-    public QuestEvent OnQuestCompleted;
+
     public bool canComplete;
 
     public virtual void Initialize()
@@ -56,7 +55,10 @@ public class Quest : ScriptableObject
         {
             completed = true;
             // donner reward
-            OnQuestCompleted.Raise(this);
+            EventManager.Instance.QueueEvent(new GiveExperienceToPlayer(rewards.XP));
+
+            rewards.items.ForEach(item => EventManager.Instance.QueueEvent(new AddItemSlot(item)));
+
             foreach (var goal in Goals)
             {
                 goal.OnGoalCompleted.RemoveAllListeners();
